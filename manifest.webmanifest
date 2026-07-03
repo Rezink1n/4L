@@ -1,0 +1,19 @@
+{
+  "name": "4L · Aprende varios idiomas a la vez",
+  "short_name": "4L",
+  "description": "Aprende francés, portugués e italiano a la vez, con seguimiento de progreso y recordatorios de repaso.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#4f46e5",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "icons/icono.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

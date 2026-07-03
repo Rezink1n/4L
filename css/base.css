@@ -1,0 +1,142 @@
+/* Reset ligero y estilos base */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--fuente-base);
+  background: var(--color-fondo);
+  color: var(--color-texto);
+  -webkit-font-smoothing: antialiased;
+  /* Deja hueco para la barra de navegación inferior fija en móvil */
+  padding-bottom: calc(var(--alto-nav-movil) + var(--espacio-md));
+  min-height: 100vh;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0 0 var(--espacio-sm) 0;
+}
+
+a {
+  color: var(--color-primario);
+}
+
+button {
+  font-family: inherit;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Contenedor principal de cada página */
+.contenedor {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--espacio-lg) var(--espacio-md);
+}
+
+.cabecera-pagina {
+  margin-bottom: var(--espacio-lg);
+}
+
+.cabecera-pagina h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.cabecera-pagina p {
+  color: var(--color-texto-suave);
+  font-size: 0.95rem;
+}
+
+/* Utilidades */
+.oculto {
+  display: none !important;
+}
+
+.solo-lectura-pantalla {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-centrado {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-entre {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gap-sm {
+  gap: var(--espacio-sm);
+}
+
+.gap-md {
+  gap: var(--espacio-md);
+}
+
+/* Estados de carga / vacío / error, reutilizados en todas las páginas */
+.estado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--espacio-sm);
+  padding: var(--espacio-xl) var(--espacio-md);
+  color: var(--color-texto-suave);
+}
+
+.estado__icono {
+  font-size: 2rem;
+}
+
+.estado--error {
+  color: var(--color-error);
+}
+
+.girando {
+  animation: girar 0.8s linear infinite;
+  display: inline-block;
+}
+
+@keyframes girar {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (min-width: 720px) {
+  .contenedor {
+    padding-top: var(--espacio-xl);
+  }
+}

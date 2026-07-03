@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Acceder · 4L</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#4f46e5" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/componentes.css" />
+</head>
+<body>
+  <div class="contenedor">
+    <div class="tarjeta-auth">
+      <div class="tarjeta-auth__logo">4L</div>
+      <p class="tarjeta-auth__subtitulo">Aprende francés, portugués e italiano a la vez</p>
+
+      <div id="zona-mensaje"></div>
+
+      <form id="formulario-auth">
+        <div class="campo">
+          <label for="campo-email">Correo electrónico</label>
+          <input type="email" id="campo-email" required autocomplete="email" />
+        </div>
+        <div class="campo" id="grupo-password">
+          <label for="campo-password">Contraseña</label>
+          <input type="password" id="campo-password" minlength="6" autocomplete="current-password" />
+        </div>
+        <button type="submit" class="boton boton--primario boton--bloque" id="boton-enviar">
+          Iniciar sesión
+        </button>
+      </form>
+
+      <p class="enlace-cambio-modo">
+        <a href="#" id="enlace-cambiar-modo">¿No tienes cuenta? Regístrate</a>
+      </p>
+
+      <div class="separador-o">o</div>
+
+      <button type="button" class="boton boton--secundario boton--bloque" id="boton-magico">
+        Enviarme un enlace mágico
+      </button>
+      <p class="campo__ayuda" style="text-align:center; margin-top:8px;">
+        Te llegará un correo con un enlace para entrar sin contraseña.
+      </p>
+    </div>
+  </div>
+
+  <script type="module" src="js/paginas/login.js"></script>
+</body>
+</html>

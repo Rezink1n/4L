@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ajustes · 4L</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#4f46e5" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/componentes.css" />
+</head>
+<body>
+  <nav id="nav-app" class="nav-app"></nav>
+
+  <main class="contenedor">
+    <div class="cabecera-pagina">
+      <h1>Ajustes</h1>
+      <p>Recordatorios de repaso y apariencia de la aplicación.</p>
+    </div>
+
+    <div class="tarjeta" style="margin-bottom: var(--espacio-lg);">
+      <h2 style="font-size:1.05rem;">Recordatorio diario</h2>
+      <div id="zona-aviso-permiso"></div>
+
+      <div class="campo">
+        <label for="campo-hora-recordatorio">Hora del recordatorio</label>
+        <input type="time" id="campo-hora-recordatorio" value="20:00" />
+      </div>
+
+      <label class="interruptor" style="margin-bottom: var(--espacio-md);">
+        <input type="checkbox" id="campo-activo-recordatorio" />
+        <span>Recordatorio activado</span>
+      </label>
+
+      <button class="boton boton--primario" id="boton-guardar-recordatorio">Guardar</button>
+
+      <p class="campo__ayuda" style="margin-top: var(--espacio-md);">
+        ⚠️ Este recordatorio se comprueba cuando abres la aplicación (al entrar
+        o al volver a la pestaña). Los navegadores no permiten programar
+        avisos exactos con la app completamente cerrada: para eso haría falta
+        un servidor de notificaciones push (ver más abajo, "Fase 2").
+      </p>
+    </div>
+
+    <div class="tarjeta" style="margin-bottom: var(--espacio-lg);">
+      <h2 style="font-size:1.05rem;">Apariencia</h2>
+      <div class="campo">
+        <label for="campo-tema">Tema</label>
+        <select id="campo-tema">
+          <option value="auto">Automático (según el sistema)</option>
+          <option value="claro">Claro</option>
+          <option value="oscuro">Oscuro</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="tarjeta">
+      <h2 style="font-size:1.05rem;">Notificaciones push reales (Fase 2)</h2>
+      <p class="campo__ayuda">
+        El recordatorio local de arriba solo funciona con la app abierta en
+        algún momento del día. Para recibir un aviso real aunque el navegador
+        esté cerrado, hace falta un push server-side con claves VAPID: el
+        proyecto ya incluye el código preparado en
+        <code>supabase/functions/send-push/index.ts</code> y la tabla
+        <code>push_subscriptions</code>, pero requiere pasos manuales
+        (generar claves VAPID, desplegar la función y programarla con
+        <code>pg_cron</code>) que no se activan por defecto. Consulta los
+        comentarios de ese archivo para la guía paso a paso.
+      </p>
+    </div>
+  </main>
+
+  <script type="module" src="js/paginas/ajustes.js"></script>
+</body>
+</html>
