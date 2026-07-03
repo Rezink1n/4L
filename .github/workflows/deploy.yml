@@ -1,0 +1,60 @@
+name: Desplegar en GitHub Pages
+
+# Se ejecuta al hacer push a "main" y también se puede lanzar a mano desde
+# la pestaña Actions (Run workflow), útil para probar el despliegue desde
+# otra rama antes de fusionarla a main.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Evita despliegues solapados: si se lanza uno nuevo, cancela el anterior en curso.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Generar js/config.js a partir de los Secrets del repositorio
+        # config.js no se sube al repo (está en .gitignore): aquí se crea en
+        # cada despliegue con las credenciales guardadas en Settings > Secrets
+        # and variables > Actions (SUPABASE_URL y SUPABASE_ANON_KEY).
+        # Recuerda: la "anon key" no es secreta por diseño, pero así evitamos
+        # tener que mantenerla escrita a mano en el repositorio.
+        run: |
+          cat > js/config.js <<EOF
+          // Archivo generado automáticamente por .github/workflows/deploy.yml
+          // a partir de los Secrets del repositorio. No editar a mano ni subir
+          // manualmente: los cambios se perderían en el siguiente despliegue.
+          export const SUPABASE_URL = '${{ secrets.SUPABASE_URL }}';
+          export const SUPABASE_ANON_KEY = '${{ secrets.SUPABASE_ANON_KEY }}';
+          EOF
+
+      - name: Preparar GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Subir el sitio como artefacto de Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Desplegar en GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

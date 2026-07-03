@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Explorar · 4L</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#4f46e5" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/componentes.css" />
+</head>
+<body>
+  <nav id="nav-app" class="nav-app"></nav>
+
+  <main class="contenedor">
+    <div class="cabecera-pagina">
+      <h1>Explorar vocabulario</h1>
+      <p>Busca términos y escucha su pronunciación en cada idioma.</p>
+    </div>
+
+    <input
+      type="search"
+      class="campo-busqueda"
+      id="campo-busqueda"
+      placeholder="Buscar una palabra o frase…"
+    />
+
+    <div class="barra-filtros" id="filtros-nivel">
+      <button class="chip-filtro activo" data-nivel="">Todos los niveles</button>
+      <button class="chip-filtro" data-nivel="A1">A1</button>
+      <button class="chip-filtro" data-nivel="A2">A2</button>
+    </div>
+
+    <div class="barra-filtros" id="filtros-origen">
+      <button class="chip-filtro activo" data-origen="todos">Todo el contenido</button>
+      <button class="chip-filtro" data-origen="oficial">Solo oficial</button>
+      <button class="chip-filtro" data-origen="propio">Solo mis palabras</button>
+    </div>
+
+    <div id="zona-resultados">
+      <div class="estado">
+        <span class="estado__icono girando">⏳</span>
+        <p>Cargando vocabulario…</p>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="js/paginas/explorar.js"></script>
+</body>
+</html>

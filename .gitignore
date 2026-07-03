@@ -1,0 +1,7 @@
+## Configuración local con credenciales de Supabase.
+## No se sube al repo: cada persona crea su copia a partir de config.example.js
+## (en producción, el workflow de GitHub Actions la genera a partir de los Secrets del repositorio).
+js/config.js
+
+.DS_Store
+*.log
