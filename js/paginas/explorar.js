@@ -5,9 +5,10 @@ import { supabase } from '../supabaseClient.js';
 import { exigirSesionYAjustes, aplicarTemaGuardado } from '../utils.js';
 import { iniciarNavegacion } from '../componentes/navegacion.js';
 import { crearTarjetaTermino } from '../componentes/tarjetaTermino.js';
-import { obtenerIdiomas } from '../api/idiomas.js';
+import { obtenerIdiomas, obtenerVariantes, agruparVariantesPorIdioma } from '../api/idiomas.js';
 import { obtenerTerminos } from '../api/terminos.js';
 import { obtenerProgreso, marcarProgreso, construirMapaProgreso } from '../api/progreso.js';
+import { obtenerFavoritos, marcarFavorito, quitarFavorito } from '../api/favoritos.js';
 import { t, nombreCategoria } from '../i18n.js';
 
 // Orden preferido para mostrar las categorías; cualquier categoría que no
@@ -42,7 +43,10 @@ if (ajustes) {
 
   let terminos = [];
   let mapaProgreso = new Map();
+  let favoritos = new Set();
+  let variantesPorIdioma = {};
   const idiomaBase = ajustes.primary_language;
+  const voiceVariants = ajustes.voice_variants || {};
   let idiomasAprendibles = [];
 
   let filtroNivel = '';
@@ -52,16 +56,20 @@ if (ajustes) {
 
   async function cargarTodo() {
     try {
-      const [idiomas, listaTerminos, progreso] = await Promise.all([
+      const [idiomas, listaTerminos, progreso, variantes, favoritosUsuario] = await Promise.all([
         obtenerIdiomas(),
         obtenerTerminos(),
         obtenerProgreso(),
+        obtenerVariantes(),
+        obtenerFavoritos(),
       ]);
       idiomasAprendibles = idiomas
         .filter((i) => ajustes.active_languages.includes(i.code))
         .sort((a, b) => a.sort_order - b.sort_order);
       terminos = listaTerminos;
       mapaProgreso = construirMapaProgreso(progreso);
+      variantesPorIdioma = agruparVariantesPorIdioma(variantes);
+      favoritos = favoritosUsuario;
       pintarChipsCategoria();
       renderizar();
     } catch (error) {
@@ -100,6 +108,7 @@ if (ajustes) {
       if (filtroNivel && termino.level !== filtroNivel) return false;
       if (filtroOrigen === 'oficial' && !termino.is_official) return false;
       if (filtroOrigen === 'propio' && termino.is_official) return false;
+      if (filtroOrigen === 'favoritos' && !favoritos.has(termino.id)) return false;
       if (filtroCategoria && termino.category !== filtroCategoria) return false;
       if (!terminoCoincideBusqueda(termino, textoBusqueda)) return false;
       return true;
@@ -139,9 +148,22 @@ if (ajustes) {
             idiomaBase,
             idiomasAprendibles,
             mapaProgreso,
+            variantesPorIdioma,
+            voiceVariants,
+            esFavorito: favoritos.has(termino.id),
             alCambiarProgreso: async (terminoId, idioma, aprendido) => {
               await marcarProgreso(terminoId, idioma, aprendido);
               mapaProgreso.set(`${terminoId}:${idioma ?? 'completo'}`, aprendido);
+            },
+            alAlternarFavorito: async (terminoId, marcado) => {
+              if (marcado) {
+                await marcarFavorito(terminoId);
+                favoritos.add(terminoId);
+              } else {
+                await quitarFavorito(terminoId);
+                favoritos.delete(terminoId);
+                if (filtroOrigen === 'favoritos') renderizar();
+              }
             },
           })
         );

@@ -306,6 +306,22 @@
   flex: none;
 }
 
+.boton-favorito {
+  font-size: 1.1rem;
+  border-color: transparent;
+  background: transparent;
+}
+
+.boton-favorito.activo {
+  color: var(--color-aviso);
+}
+
+.tarjeta__bandera {
+  font-size: 0.95rem;
+  line-height: 1;
+  flex: none;
+}
+
 .tarjeta__traduccion {
   display: flex;
   align-items: center;

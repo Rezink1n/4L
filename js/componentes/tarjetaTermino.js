@@ -1,7 +1,8 @@
 // Componente de tarjeta: muestra un término en el idioma principal del
-// usuario junto a sus traducciones activas, con botón de audio y controles
-// de progreso por idioma.
-import { pronunciar, hayVozDisponible } from '../tts.js';
+// usuario junto a sus traducciones activas, con bandera de la variante de
+// pronunciación, botón de audio, favorito y controles de progreso por idioma.
+import { pronunciar, hayVozDisponible, localePorDefecto } from '../tts.js';
+import { resolverVariante } from '../api/idiomas.js';
 import { escaparHtml, mostrarTostada } from '../utils.js';
 import { t, nombreCategoria } from '../i18n.js';
 
@@ -17,6 +18,7 @@ const COLOR_IDIOMA = {
   de: '#a16207',
 };
 const COLOR_IDIOMA_DEFECTO = '#94a3b8';
+const BANDERA_DEFECTO = '🏳️';
 
 /**
  * @param {object} termino - fila de "terms" con su array `translations`
@@ -24,16 +26,39 @@ const COLOR_IDIOMA_DEFECTO = '#94a3b8';
  * @param {string} opciones.idiomaBase - código del idioma principal del usuario
  * @param {Array} opciones.idiomasAprendibles - filas de "languages" activas, ordenadas
  * @param {Map} opciones.mapaProgreso - de construirMapaProgreso()
+ * @param {object} [opciones.variantesPorIdioma] - de agruparVariantesPorIdioma()
+ * @param {object} [opciones.voiceVariants] - preferencia guardada del usuario (user_settings.voice_variants)
+ * @param {boolean} [opciones.esFavorito] - si el término ya está en favoritos
  * @param {(terminoId: string, idioma: string|null, aprendido: boolean) => Promise} opciones.alCambiarProgreso
+ * @param {(terminoId: string, marcado: boolean) => Promise} [opciones.alAlternarFavorito]
  * @param {(termino: object) => void} [opciones.alEditar] - solo para términos propios
  * @param {(terminoId: string) => void} [opciones.alBorrar] - solo para términos propios
  */
 export function crearTarjetaTermino(termino, opciones) {
-  const { idiomaBase, idiomasAprendibles, mapaProgreso, alCambiarProgreso, alEditar, alBorrar } =
-    opciones;
+  const {
+    idiomaBase,
+    idiomasAprendibles,
+    mapaProgreso,
+    variantesPorIdioma = {},
+    voiceVariants = {},
+    esFavorito = false,
+    alCambiarProgreso,
+    alAlternarFavorito,
+    alEditar,
+    alBorrar,
+  } = opciones;
+
+  function banderaYLocale(idioma) {
+    const variante = resolverVariante(idioma, variantesPorIdioma, voiceVariants);
+    return {
+      bandera: variante?.flag_emoji || BANDERA_DEFECTO,
+      locale: variante?.tts_locale || localePorDefecto(idioma),
+    };
+  }
 
   const traduccionesPorIdioma = new Map(termino.translations.map((trad) => [trad.language_code, trad.text]));
   const textoBase = traduccionesPorIdioma.get(idiomaBase) || '';
+  const { bandera: banderaBase } = banderaYLocale(idiomaBase);
 
   const tarjeta = document.createElement('article');
   tarjeta.className = 'tarjeta';
@@ -44,10 +69,15 @@ export function crearTarjetaTermino(termino, opciones) {
   tarjeta.innerHTML = `
     <div class="tarjeta__cabecera">
       <div>
-        <div class="tarjeta__termino-es">${escaparHtml(textoBase)}</div>
+        <div class="tarjeta__termino-es">
+          <span class="tarjeta__bandera">${banderaBase}</span> ${escaparHtml(textoBase)}
+        </div>
         <div class="tarjeta__categoria">${escaparHtml(nombreCategoria(termino.category || ''))}</div>
       </div>
       <div class="flex gap-sm">
+        <button class="boton-icono boton-favorito ${esFavorito ? 'activo' : ''}" title="${t('tarjeta_title_favorito')}">
+          ${esFavorito ? '⭐' : '☆'}
+        </button>
         ${termino.is_official ? '' : `<span class="insignia-propio">${t('tarjeta_insignia_mia')}</span>`}
         <span class="insignia-nivel">${escaparHtml(termino.level)}</span>
       </div>
@@ -56,11 +86,13 @@ export function crearTarjetaTermino(termino, opciones) {
       .map((idioma) => {
         const texto = traduccionesPorIdioma.get(idioma.code);
         const aprendido = mapaProgreso.get(`${termino.id}:${idioma.code}`) === true;
-        const sinVoz = texto && !hayVozDisponible(idioma.code);
+        const { bandera, locale } = banderaYLocale(idioma.code);
+        const sinVoz = texto && !hayVozDisponible(locale);
         const color = COLOR_IDIOMA[idioma.code] || COLOR_IDIOMA_DEFECTO;
         return `
-        <div class="tarjeta__traduccion" data-idioma="${idioma.code}">
+        <div class="tarjeta__traduccion" data-idioma="${idioma.code}" data-locale="${locale}">
           <span class="tarjeta__idioma-punto" style="background-color:${color}"></span>
+          <span class="tarjeta__bandera">${bandera}</span>
           <span class="tarjeta__texto-traduccion ${texto ? '' : 'tarjeta__texto-traduccion--vacio'}">
             ${texto ? escaparHtml(texto) : t('tarjeta_sin_traduccion')}
           </span>
@@ -95,11 +127,12 @@ export function crearTarjetaTermino(termino, opciones) {
   // Botones de audio: uno por cada fila de idioma con texto.
   tarjeta.querySelectorAll('.tarjeta__traduccion').forEach((fila) => {
     const idioma = fila.dataset.idioma;
+    const locale = fila.dataset.locale;
     const texto = traduccionesPorIdioma.get(idioma);
     const botonAudio = fila.querySelector('.boton-audio');
     botonAudio.addEventListener('click', () => {
       try {
-        pronunciar(texto, idioma);
+        pronunciar(texto, locale);
       } catch (error) {
         mostrarTostada(error.message);
       }
@@ -131,6 +164,22 @@ export function crearTarjetaTermino(termino, opciones) {
       mostrarTostada(t('mispalabras_toast_error_guardar'));
     } finally {
       checkCompleto.disabled = false;
+    }
+  });
+
+  const botonFavorito = tarjeta.querySelector('.boton-favorito');
+  botonFavorito.addEventListener('click', async () => {
+    const marcarComoFavorito = !botonFavorito.classList.contains('activo');
+    botonFavorito.disabled = true;
+    try {
+      await alAlternarFavorito?.(termino.id, marcarComoFavorito);
+      botonFavorito.classList.toggle('activo', marcarComoFavorito);
+      botonFavorito.textContent = marcarComoFavorito ? '⭐' : '☆';
+    } catch (error) {
+      console.error(error);
+      mostrarTostada(t('mispalabras_toast_error_guardar'));
+    } finally {
+      botonFavorito.disabled = false;
     }
   });
 

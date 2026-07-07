@@ -3,11 +3,15 @@
 import { supabase } from '../supabaseClient.js';
 import { cerrarSesion } from '../auth.js';
 import { registrarServiceWorker, comprobarYNotificarSiToca, intentarSincroniaPeriodica } from '../notificaciones.js';
+import { obtenerMiRol } from '../api/roles.js';
+import { obtenerMiPerfil } from '../api/perfil.js';
+import { escaparHtml } from '../utils.js';
 import { t, aplicarTraducciones } from '../i18n.js';
 
 function enlaces() {
   return [
     { href: 'index.html', icono: '📖', clave: 'nav_explorar' },
+    { href: 'aprender.html', icono: '🔤', clave: 'nav_aprender' },
     { href: 'progreso.html', icono: '📊', clave: 'nav_progreso' },
     { href: 'mis-palabras.html', icono: '✏️', clave: 'nav_mispalabras' },
     { href: 'ajustes.html', icono: '⚙️', clave: 'nav_ajustes' },
@@ -33,14 +37,32 @@ export async function iniciarNavegacion(paginaActual) {
       )
       .join('');
 
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
+    const [
+      {
+        data: { user },
+      },
+      rol,
+      perfil,
+    ] = await Promise.all([supabase.auth.getUser(), obtenerMiRol().catch(() => 'estudiante'), obtenerMiPerfil().catch(() => null)]);
+
+    if (rol === 'admin' || rol === 'moderador') {
+      const enlaceAdmin = document.createElement('a');
+      enlaceAdmin.href = 'admin.html';
+      enlaceAdmin.className = `nav-app__enlace ${paginaActual === 'admin.html' ? 'activo' : ''}`;
+      enlaceAdmin.innerHTML = `<span>🛠️</span><span>Admin</span>`;
+      nav.appendChild(enlaceAdmin);
+    }
 
     const infoUsuario = document.createElement('div');
     infoUsuario.className = 'nav-app__usuario';
+    const avatar = perfil?.avatar_url
+      ? `<img src="${perfil.avatar_url}" alt="" style="width:28px;height:28px;border-radius:999px;object-fit:cover;" />`
+      : '👤';
     infoUsuario.innerHTML = `
-      <span>${user?.email ?? ''}</span>
+      <a href="perfil.html" class="flex gap-sm" style="align-items:center; text-decoration:none; color:inherit;">
+        ${avatar}
+        <span>${escaparHtml(perfil?.display_name || user?.email || '')}</span>
+      </a>
       <button class="boton boton--secundario" id="boton-cerrar-sesion" style="padding:6px 12px;">${t('nav_salir')}</button>
     `;
     nav.appendChild(infoUsuario);

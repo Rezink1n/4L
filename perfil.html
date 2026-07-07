@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>4L</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#4f46e5" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/componentes.css" />
+</head>
+<body>
+  <nav id="nav-app" class="nav-app"></nav>
+
+  <main class="contenedor">
+    <div class="cabecera-pagina">
+      <h1 data-i18n="perfil_titulo">Mi perfil</h1>
+      <p data-i18n="perfil_subtitulo">Tu información, tu foto y tu progreso por idioma.</p>
+    </div>
+
+    <div class="tarjeta" style="margin-bottom: var(--espacio-lg); text-align:center;">
+      <img
+        id="imagen-avatar"
+        src=""
+        alt=""
+        class="oculto"
+        style="width:96px;height:96px;border-radius:999px;object-fit:cover;margin:0 auto var(--espacio-sm);"
+      />
+      <div id="avatar-placeholder" style="font-size:3rem;">👤</div>
+      <input type="file" id="campo-avatar" accept="image/*" class="oculto" />
+      <button class="boton boton--secundario" id="boton-cambiar-avatar" style="margin-top:var(--espacio-sm);" data-i18n="perfil_boton_cambiar_foto">
+        Cambiar foto
+      </button>
+    </div>
+
+    <form id="formulario-perfil" class="tarjeta" style="margin-bottom: var(--espacio-lg);">
+      <div class="campo">
+        <label for="campo-nombre" data-i18n="perfil_label_nombre">Nombre</label>
+        <input type="text" id="campo-nombre" />
+      </div>
+      <div class="campo">
+        <label for="campo-email" data-i18n="perfil_label_email">Correo</label>
+        <input type="text" id="campo-email" disabled />
+      </div>
+      <div class="campo">
+        <label for="campo-bio" data-i18n="perfil_label_bio">Sobre mí (opcional)</label>
+        <textarea id="campo-bio" rows="3"></textarea>
+      </div>
+      <button type="submit" class="boton boton--primario" data-i18n="perfil_boton_guardar">Guardar perfil</button>
+    </form>
+
+    <div class="tarjeta">
+      <h2 style="font-size:1.05rem;" data-i18n="perfil_progreso_titulo">Mi nivel por idioma</h2>
+      <div id="zona-nivel-idiomas">
+        <div class="estado">
+          <span class="estado__icono girando">⏳</span>
+          <p data-i18n="aprender_cargando">Cargando…</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="js/paginas/perfil.js"></script>
+</body>
+</html>
