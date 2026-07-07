@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Acceder · 4L</title>
+  <title>4L</title>
   <link rel="manifest" href="manifest.webmanifest" />
   <meta name="theme-color" content="#4f46e5" />
   <link rel="stylesheet" href="css/variables.css" />
@@ -14,34 +14,34 @@
   <div class="contenedor">
     <div class="tarjeta-auth">
       <div class="tarjeta-auth__logo">4L</div>
-      <p class="tarjeta-auth__subtitulo">Aprende francés, portugués e italiano a la vez</p>
+      <p class="tarjeta-auth__subtitulo" data-i18n="app_subtitulo">Aprende varios idiomas a la vez</p>
 
       <div id="zona-mensaje"></div>
 
       <form id="formulario-auth">
         <div class="campo">
-          <label for="campo-email">Correo electrónico</label>
+          <label for="campo-email" data-i18n="login_label_email">Correo electrónico</label>
           <input type="email" id="campo-email" required autocomplete="email" />
         </div>
         <div class="campo" id="grupo-password">
-          <label for="campo-password">Contraseña</label>
+          <label for="campo-password" data-i18n="login_label_password">Contraseña</label>
           <input type="password" id="campo-password" minlength="6" autocomplete="current-password" />
         </div>
-        <button type="submit" class="boton boton--primario boton--bloque" id="boton-enviar">
+        <button type="submit" class="boton boton--primario boton--bloque" id="boton-enviar" data-i18n="login_boton_iniciar">
           Iniciar sesión
         </button>
       </form>
 
       <p class="enlace-cambio-modo">
-        <a href="#" id="enlace-cambiar-modo">¿No tienes cuenta? Regístrate</a>
+        <a href="#" id="enlace-cambiar-modo" data-i18n="login_enlace_a_registro">¿No tienes cuenta? Regístrate</a>
       </p>
 
-      <div class="separador-o">o</div>
+      <div class="separador-o" data-i18n="login_separador_o">o</div>
 
-      <button type="button" class="boton boton--secundario boton--bloque" id="boton-magico">
+      <button type="button" class="boton boton--secundario boton--bloque" id="boton-magico" data-i18n="login_boton_magico">
         Enviarme un enlace mágico
       </button>
-      <p class="campo__ayuda" style="text-align:center; margin-top:8px;">
+      <p class="campo__ayuda" style="text-align:center; margin-top:8px;" data-i18n="login_ayuda_magico">
         Te llegará un correo con un enlace para entrar sin contraseña.
       </p>
     </div>

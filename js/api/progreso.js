@@ -44,8 +44,10 @@ export function construirMapaProgreso(progreso) {
 /**
  * Calcula el porcentaje aprendido por idioma y por nivel a partir de la
  * lista de términos (con sus traducciones) y las filas de progreso.
+ * @param {string} idiomaBase - idioma principal del usuario, no cuenta como "a aprender"
+ * @param {string[]} idiomasActivos - códigos de los idiomas que el usuario está aprendiendo ahora
  */
-export function calcularEstadisticas(terminos, progreso) {
+export function calcularEstadisticas(terminos, progreso, idiomaBase, idiomasActivos) {
   const progresoPorClave = construirMapaProgreso(progreso);
 
   const porNivel = {};
@@ -54,8 +56,8 @@ export function calcularEstadisticas(terminos, progreso) {
     porNivel[nivel] = porNivel[nivel] || {};
 
     for (const trad of termino.translations) {
-      if (trad.language_code === 'es') continue; // el español no se "aprende"
       const idioma = trad.language_code;
+      if (idioma === idiomaBase || !idiomasActivos.includes(idioma)) continue;
       porNivel[nivel][idioma] = porNivel[nivel][idioma] || { total: 0, aprendidos: 0 };
       porNivel[nivel][idioma].total += 1;
       if (progresoPorClave.get(`${termino.id}:${idioma}`)) {

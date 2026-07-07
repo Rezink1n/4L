@@ -1,4 +1,6 @@
 // Utilidades pequeñas compartidas por toda la aplicación.
+import { obtenerAjustesUsuario } from './api/ajustesUsuario.js';
+import { establecerIdiomaInterfaz } from './i18n.js';
 
 /**
  * Muestra un mensaje flotante ("tostada") temporal en la parte inferior.
@@ -61,4 +63,24 @@ export async function exigirSesion(supabase) {
     return null;
   }
   return session;
+}
+
+/**
+ * Exige sesión activa Y que el usuario ya haya elegido idioma principal /
+ * idiomas activos (si no, lo manda al onboarding). De paso, aplica el idioma
+ * principal guardado como idioma de la interfaz. Se usa en Explorar, Mi
+ * progreso, Mis palabras y Ajustes.
+ */
+export async function exigirSesionYAjustes(supabase) {
+  const session = await exigirSesion(supabase);
+  if (!session) return null;
+
+  const ajustes = await obtenerAjustesUsuario();
+  if (!ajustes || !ajustes.active_languages || ajustes.active_languages.length === 0) {
+    window.location.href = 'onboarding.html';
+    return null;
+  }
+
+  establecerIdiomaInterfaz(ajustes.primary_language);
+  return ajustes;
 }

@@ -9,14 +9,3 @@ export async function obtenerIdiomas() {
   if (error) throw error;
   return data;
 }
-
-/** Solo los idiomas "a aprender" (excluye el idioma base, p. ej. español). */
-export async function obtenerIdiomasAprendibles() {
-  const { data, error } = await supabase
-    .from('languages')
-    .select('*')
-    .eq('is_learnable', true)
-    .order('sort_order');
-  if (error) throw error;
-  return data;
-}

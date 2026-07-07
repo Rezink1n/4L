@@ -324,16 +324,8 @@
   height: 8px;
   border-radius: 999px;
   flex: none;
-}
-
-.tarjeta__idioma-punto--fr {
-  background: var(--color-fr);
-}
-.tarjeta__idioma-punto--pt {
-  background: var(--color-pt);
-}
-.tarjeta__idioma-punto--it {
-  background: var(--color-it);
+  /* El color se fija por idioma en línea, desde js/componentes/tarjetaTermino.js
+     (COLOR_IDIOMA), para que añadir un idioma nuevo no requiera tocar CSS. */
 }
 
 .tarjeta__texto-traduccion {

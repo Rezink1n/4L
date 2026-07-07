@@ -1,114 +1,2779 @@
 {
-  "_comentario": "Mismo contenido semilla que supabase/seed_a1.sql y seed_a2.sql, en JSON por si prefieres cargarlo con un script propio (por ejemplo, iterando con supabase-js e insertando en 'terms' + 'translations') en lugar de ejecutar SQL directamente.",
+  "_comentario": "Mismo contenido semilla que los scripts en supabase/*.sql, en JSON por si prefieres cargarlo con un script propio (por ejemplo, iterando con supabase-js e insertando en 'terms' + 'translations') en lugar de ejecutar SQL directamente. Exportado directamente desde la base de datos para garantizar que coincide exactamente.",
   "A1": [
-    { "categoria": "saludos", "es": "Hola", "fr": "Bonjour", "pt": "Olá", "it": "Ciao" },
-    { "categoria": "saludos", "es": "Adiós", "fr": "Au revoir", "pt": "Adeus", "it": "Arrivederci" },
-    { "categoria": "saludos", "es": "Buenos días", "fr": "Bonjour", "pt": "Bom dia", "it": "Buongiorno" },
-    { "categoria": "saludos", "es": "Buenas tardes", "fr": "Bon après-midi", "pt": "Boa tarde", "it": "Buon pomeriggio" },
-    { "categoria": "saludos", "es": "Buenas noches", "fr": "Bonne nuit", "pt": "Boa noite", "it": "Buonanotte" },
-    { "categoria": "saludos", "es": "Por favor", "fr": "S'il vous plaît", "pt": "Por favor", "it": "Per favore" },
-    { "categoria": "saludos", "es": "Gracias", "fr": "Merci", "pt": "Obrigado", "it": "Grazie" },
-    { "categoria": "saludos", "es": "De nada", "fr": "De rien", "pt": "De nada", "it": "Prego" },
-    { "categoria": "presentaciones", "es": "Me llamo...", "fr": "Je m'appelle...", "pt": "Chamo-me...", "it": "Mi chiamo..." },
-    { "categoria": "presentaciones", "es": "¿Cómo te llamas?", "fr": "Comment tu t'appelles ?", "pt": "Como te chamas?", "it": "Come ti chiami?" },
-    { "categoria": "presentaciones", "es": "Mucho gusto", "fr": "Enchanté", "pt": "Muito prazer", "it": "Piacere" },
-    { "categoria": "presentaciones", "es": "¿Cómo estás?", "fr": "Comment ça va ?", "pt": "Como estás?", "it": "Come stai?" },
-    { "categoria": "presentaciones", "es": "Bien, gracias", "fr": "Bien, merci", "pt": "Bem, obrigado", "it": "Bene, grazie" },
-    { "categoria": "presentaciones", "es": "Hasta luego", "fr": "À bientôt", "pt": "Até logo", "it": "A dopo" },
-    { "categoria": "numeros", "es": "Cero", "fr": "Zéro", "pt": "Zero", "it": "Zero" },
-    { "categoria": "numeros", "es": "Uno", "fr": "Un", "pt": "Um", "it": "Uno" },
-    { "categoria": "numeros", "es": "Dos", "fr": "Deux", "pt": "Dois", "it": "Due" },
-    { "categoria": "numeros", "es": "Tres", "fr": "Trois", "pt": "Três", "it": "Tre" },
-    { "categoria": "numeros", "es": "Cuatro", "fr": "Quatre", "pt": "Quatro", "it": "Quattro" },
-    { "categoria": "numeros", "es": "Cinco", "fr": "Cinq", "pt": "Cinco", "it": "Cinque" },
-    { "categoria": "numeros", "es": "Seis", "fr": "Six", "pt": "Seis", "it": "Sei" },
-    { "categoria": "numeros", "es": "Siete", "fr": "Sept", "pt": "Sete", "it": "Sette" },
-    { "categoria": "numeros", "es": "Ocho", "fr": "Huit", "pt": "Oito", "it": "Otto" },
-    { "categoria": "numeros", "es": "Nueve", "fr": "Neuf", "pt": "Nove", "it": "Nove" },
-    { "categoria": "numeros", "es": "Diez", "fr": "Dix", "pt": "Dez", "it": "Dieci" },
-    { "categoria": "familia", "es": "Madre", "fr": "Mère", "pt": "Mãe", "it": "Madre" },
-    { "categoria": "familia", "es": "Padre", "fr": "Père", "pt": "Pai", "it": "Padre" },
-    { "categoria": "familia", "es": "Hermano", "fr": "Frère", "pt": "Irmão", "it": "Fratello" },
-    { "categoria": "familia", "es": "Hermana", "fr": "Sœur", "pt": "Irmã", "it": "Sorella" },
-    { "categoria": "familia", "es": "Hijo", "fr": "Fils", "pt": "Filho", "it": "Figlio" },
-    { "categoria": "familia", "es": "Hija", "fr": "Fille", "pt": "Filha", "it": "Figlia" },
-    { "categoria": "familia", "es": "Abuelo", "fr": "Grand-père", "pt": "Avô", "it": "Nonno" },
-    { "categoria": "familia", "es": "Abuela", "fr": "Grand-mère", "pt": "Avó", "it": "Nonna" },
-    { "categoria": "colores", "es": "Rojo", "fr": "Rouge", "pt": "Vermelho", "it": "Rosso" },
-    { "categoria": "colores", "es": "Azul", "fr": "Bleu", "pt": "Azul", "it": "Blu" },
-    { "categoria": "colores", "es": "Verde", "fr": "Vert", "pt": "Verde", "it": "Verde" },
-    { "categoria": "colores", "es": "Amarillo", "fr": "Jaune", "pt": "Amarelo", "it": "Giallo" },
-    { "categoria": "colores", "es": "Blanco", "fr": "Blanc", "pt": "Branco", "it": "Bianco" },
-    { "categoria": "colores", "es": "Negro", "fr": "Noir", "pt": "Preto", "it": "Nero" },
-    { "categoria": "comida", "es": "Agua", "fr": "Eau", "pt": "Água", "it": "Acqua" },
-    { "categoria": "comida", "es": "Pan", "fr": "Pain", "pt": "Pão", "it": "Pane" },
-    { "categoria": "comida", "es": "Leche", "fr": "Lait", "pt": "Leite", "it": "Latte" },
-    { "categoria": "comida", "es": "Manzana", "fr": "Pomme", "pt": "Maçã", "it": "Mela" },
-    { "categoria": "comida", "es": "Arroz", "fr": "Riz", "pt": "Arroz", "it": "Riso" },
-    { "categoria": "comida", "es": "Pollo", "fr": "Poulet", "pt": "Frango", "it": "Pollo" },
-    { "categoria": "comida", "es": "Café", "fr": "Café", "pt": "Café", "it": "Caffè" },
-    { "categoria": "comida", "es": "Queso", "fr": "Fromage", "pt": "Queijo", "it": "Formaggio" },
-    { "categoria": "verbos", "es": "Ser", "fr": "Être", "pt": "Ser", "it": "Essere" },
-    { "categoria": "verbos", "es": "Estar", "fr": "Être", "pt": "Estar", "it": "Stare" },
-    { "categoria": "verbos", "es": "Tener", "fr": "Avoir", "pt": "Ter", "it": "Avere" },
-    { "categoria": "verbos", "es": "Comer", "fr": "Manger", "pt": "Comer", "it": "Mangiare" },
-    { "categoria": "verbos", "es": "Beber", "fr": "Boire", "pt": "Beber", "it": "Bere" },
-    { "categoria": "verbos", "es": "Hablar", "fr": "Parler", "pt": "Falar", "it": "Parlare" },
-    { "categoria": "verbos", "es": "Vivir", "fr": "Vivre", "pt": "Viver", "it": "Vivere" },
-    { "categoria": "verbos", "es": "Querer", "fr": "Vouloir", "pt": "Querer", "it": "Volere" }
+    {
+      "de": "Hallo",
+      "en": "Hello",
+      "es": "Hola",
+      "fr": "Bonjour",
+      "it": "Ciao",
+      "pt": "Olá",
+      "categoria": "saludos"
+    },
+    {
+      "de": "Auf Wiedersehen",
+      "en": "Goodbye",
+      "es": "Adiós",
+      "fr": "Au revoir",
+      "it": "Arrivederci",
+      "pt": "Adeus",
+      "categoria": "saludos"
+    },
+    {
+      "de": "Guten Morgen",
+      "en": "Good morning",
+      "es": "Buenos días",
+      "fr": "Bonjour",
+      "it": "Buongiorno",
+      "pt": "Bom dia",
+      "categoria": "saludos"
+    },
+    {
+      "de": "Guten Tag",
+      "en": "Good afternoon",
+      "es": "Buenas tardes",
+      "fr": "Bon après-midi",
+      "it": "Buon pomeriggio",
+      "pt": "Boa tarde",
+      "categoria": "saludos"
+    },
+    {
+      "de": "Gute Nacht",
+      "en": "Good night",
+      "es": "Buenas noches",
+      "fr": "Bonne nuit",
+      "it": "Buonanotte",
+      "pt": "Boa noite",
+      "categoria": "saludos"
+    },
+    {
+      "de": "Bitte",
+      "en": "Please",
+      "es": "Por favor",
+      "fr": "S'il vous plaît",
+      "it": "Per favore",
+      "pt": "Por favor",
+      "categoria": "saludos"
+    },
+    {
+      "de": "Danke",
+      "en": "Thank you",
+      "es": "Gracias",
+      "fr": "Merci",
+      "it": "Grazie",
+      "pt": "Obrigado",
+      "categoria": "saludos"
+    },
+    {
+      "de": "Bitte schön",
+      "en": "You're welcome",
+      "es": "De nada",
+      "fr": "De rien",
+      "it": "Prego",
+      "pt": "De nada",
+      "categoria": "saludos"
+    },
+    {
+      "de": "Ich heiße...",
+      "en": "My name is...",
+      "es": "Me llamo...",
+      "fr": "Je m'appelle...",
+      "it": "Mi chiamo...",
+      "pt": "Chamo-me...",
+      "categoria": "presentaciones"
+    },
+    {
+      "de": "Wie heißt du?",
+      "en": "What's your name?",
+      "es": "¿Cómo te llamas?",
+      "fr": "Comment tu t'appelles ?",
+      "it": "Come ti chiami?",
+      "pt": "Como te chamas?",
+      "categoria": "presentaciones"
+    },
+    {
+      "de": "Freut mich",
+      "en": "Nice to meet you",
+      "es": "Mucho gusto",
+      "fr": "Enchanté",
+      "it": "Piacere",
+      "pt": "Muito prazer",
+      "categoria": "presentaciones"
+    },
+    {
+      "de": "Wie geht es dir?",
+      "en": "How are you?",
+      "es": "¿Cómo estás?",
+      "fr": "Comment ça va ?",
+      "it": "Come stai?",
+      "pt": "Como estás?",
+      "categoria": "presentaciones"
+    },
+    {
+      "de": "Gut, danke",
+      "en": "Fine, thank you",
+      "es": "Bien, gracias",
+      "fr": "Bien, merci",
+      "it": "Bene, grazie",
+      "pt": "Bem, obrigado",
+      "categoria": "presentaciones"
+    },
+    {
+      "de": "Bis später",
+      "en": "See you later",
+      "es": "Hasta luego",
+      "fr": "À bientôt",
+      "it": "A dopo",
+      "pt": "Até logo",
+      "categoria": "presentaciones"
+    },
+    {
+      "de": "Null",
+      "en": "Zero",
+      "es": "Cero",
+      "fr": "Zéro",
+      "it": "Zero",
+      "pt": "Zero",
+      "categoria": "numeros"
+    },
+    {
+      "de": "Eins",
+      "en": "One",
+      "es": "Uno",
+      "fr": "Un",
+      "it": "Uno",
+      "pt": "Um",
+      "categoria": "numeros"
+    },
+    {
+      "de": "Zwei",
+      "en": "Two",
+      "es": "Dos",
+      "fr": "Deux",
+      "it": "Due",
+      "pt": "Dois",
+      "categoria": "numeros"
+    },
+    {
+      "de": "Drei",
+      "en": "Three",
+      "es": "Tres",
+      "fr": "Trois",
+      "it": "Tre",
+      "pt": "Três",
+      "categoria": "numeros"
+    },
+    {
+      "de": "Vier",
+      "en": "Four",
+      "es": "Cuatro",
+      "fr": "Quatre",
+      "it": "Quattro",
+      "pt": "Quatro",
+      "categoria": "numeros"
+    },
+    {
+      "de": "Fünf",
+      "en": "Five",
+      "es": "Cinco",
+      "fr": "Cinq",
+      "it": "Cinque",
+      "pt": "Cinco",
+      "categoria": "numeros"
+    },
+    {
+      "de": "Sechs",
+      "en": "Six",
+      "es": "Seis",
+      "fr": "Six",
+      "it": "Sei",
+      "pt": "Seis",
+      "categoria": "numeros"
+    },
+    {
+      "de": "Sieben",
+      "en": "Seven",
+      "es": "Siete",
+      "fr": "Sept",
+      "it": "Sette",
+      "pt": "Sete",
+      "categoria": "numeros"
+    },
+    {
+      "de": "Acht",
+      "en": "Eight",
+      "es": "Ocho",
+      "fr": "Huit",
+      "it": "Otto",
+      "pt": "Oito",
+      "categoria": "numeros"
+    },
+    {
+      "de": "Neun",
+      "en": "Nine",
+      "es": "Nueve",
+      "fr": "Neuf",
+      "it": "Nove",
+      "pt": "Nove",
+      "categoria": "numeros"
+    },
+    {
+      "de": "Zehn",
+      "en": "Ten",
+      "es": "Diez",
+      "fr": "Dix",
+      "it": "Dieci",
+      "pt": "Dez",
+      "categoria": "numeros"
+    },
+    {
+      "de": "Mutter",
+      "en": "Mother",
+      "es": "Madre",
+      "fr": "Mère",
+      "it": "Madre",
+      "pt": "Mãe",
+      "categoria": "familia"
+    },
+    {
+      "de": "Vater",
+      "en": "Father",
+      "es": "Padre",
+      "fr": "Père",
+      "it": "Padre",
+      "pt": "Pai",
+      "categoria": "familia"
+    },
+    {
+      "de": "Bruder",
+      "en": "Brother",
+      "es": "Hermano",
+      "fr": "Frère",
+      "it": "Fratello",
+      "pt": "Irmão",
+      "categoria": "familia"
+    },
+    {
+      "de": "Schwester",
+      "en": "Sister",
+      "es": "Hermana",
+      "fr": "Sœur",
+      "it": "Sorella",
+      "pt": "Irmã",
+      "categoria": "familia"
+    },
+    {
+      "de": "Sohn",
+      "en": "Son",
+      "es": "Hijo",
+      "fr": "Fils",
+      "it": "Figlio",
+      "pt": "Filho",
+      "categoria": "familia"
+    },
+    {
+      "de": "Tochter",
+      "en": "Daughter",
+      "es": "Hija",
+      "fr": "Fille",
+      "it": "Figlia",
+      "pt": "Filha",
+      "categoria": "familia"
+    },
+    {
+      "de": "Großvater",
+      "en": "Grandfather",
+      "es": "Abuelo",
+      "fr": "Grand-père",
+      "it": "Nonno",
+      "pt": "Avô",
+      "categoria": "familia"
+    },
+    {
+      "de": "Großmutter",
+      "en": "Grandmother",
+      "es": "Abuela",
+      "fr": "Grand-mère",
+      "it": "Nonna",
+      "pt": "Avó",
+      "categoria": "familia"
+    },
+    {
+      "de": "Rot",
+      "en": "Red",
+      "es": "Rojo",
+      "fr": "Rouge",
+      "it": "Rosso",
+      "pt": "Vermelho",
+      "categoria": "colores"
+    },
+    {
+      "de": "Blau",
+      "en": "Blue",
+      "es": "Azul",
+      "fr": "Bleu",
+      "it": "Blu",
+      "pt": "Azul",
+      "categoria": "colores"
+    },
+    {
+      "de": "Grün",
+      "en": "Green",
+      "es": "Verde",
+      "fr": "Vert",
+      "it": "Verde",
+      "pt": "Verde",
+      "categoria": "colores"
+    },
+    {
+      "de": "Gelb",
+      "en": "Yellow",
+      "es": "Amarillo",
+      "fr": "Jaune",
+      "it": "Giallo",
+      "pt": "Amarelo",
+      "categoria": "colores"
+    },
+    {
+      "de": "Weiß",
+      "en": "White",
+      "es": "Blanco",
+      "fr": "Blanc",
+      "it": "Bianco",
+      "pt": "Branco",
+      "categoria": "colores"
+    },
+    {
+      "de": "Schwarz",
+      "en": "Black",
+      "es": "Negro",
+      "fr": "Noir",
+      "it": "Nero",
+      "pt": "Preto",
+      "categoria": "colores"
+    },
+    {
+      "de": "Wasser",
+      "en": "Water",
+      "es": "Agua",
+      "fr": "Eau",
+      "it": "Acqua",
+      "pt": "Água",
+      "categoria": "comida"
+    },
+    {
+      "de": "Brot",
+      "en": "Bread",
+      "es": "Pan",
+      "fr": "Pain",
+      "it": "Pane",
+      "pt": "Pão",
+      "categoria": "comida"
+    },
+    {
+      "de": "Milch",
+      "en": "Milk",
+      "es": "Leche",
+      "fr": "Lait",
+      "it": "Latte",
+      "pt": "Leite",
+      "categoria": "comida"
+    },
+    {
+      "de": "Apfel",
+      "en": "Apple",
+      "es": "Manzana",
+      "fr": "Pomme",
+      "it": "Mela",
+      "pt": "Maçã",
+      "categoria": "comida"
+    },
+    {
+      "de": "Reis",
+      "en": "Rice",
+      "es": "Arroz",
+      "fr": "Riz",
+      "it": "Riso",
+      "pt": "Arroz",
+      "categoria": "comida"
+    },
+    {
+      "de": "Hähnchen",
+      "en": "Chicken",
+      "es": "Pollo",
+      "fr": "Poulet",
+      "it": "Pollo",
+      "pt": "Frango",
+      "categoria": "comida"
+    },
+    {
+      "de": "Kaffee",
+      "en": "Coffee",
+      "es": "Café",
+      "fr": "Café",
+      "it": "Caffè",
+      "pt": "Café",
+      "categoria": "comida"
+    },
+    {
+      "de": "Käse",
+      "en": "Cheese",
+      "es": "Queso",
+      "fr": "Fromage",
+      "it": "Formaggio",
+      "pt": "Queijo",
+      "categoria": "comida"
+    },
+    {
+      "de": "Sein",
+      "en": "To be",
+      "es": "Ser",
+      "fr": "Être",
+      "it": "Essere",
+      "pt": "Ser",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Sein",
+      "en": "To be",
+      "es": "Estar",
+      "fr": "Être",
+      "it": "Stare",
+      "pt": "Estar",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Haben",
+      "en": "To have",
+      "es": "Tener",
+      "fr": "Avoir",
+      "it": "Avere",
+      "pt": "Ter",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Essen",
+      "en": "To eat",
+      "es": "Comer",
+      "fr": "Manger",
+      "it": "Mangiare",
+      "pt": "Comer",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Trinken",
+      "en": "To drink",
+      "es": "Beber",
+      "fr": "Boire",
+      "it": "Bere",
+      "pt": "Beber",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Sprechen",
+      "en": "To speak",
+      "es": "Hablar",
+      "fr": "Parler",
+      "it": "Parlare",
+      "pt": "Falar",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Leben",
+      "en": "To live",
+      "es": "Vivir",
+      "fr": "Vivre",
+      "it": "Vivere",
+      "pt": "Viver",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Wollen",
+      "en": "To want",
+      "es": "Querer",
+      "fr": "Vouloir",
+      "it": "Volere",
+      "pt": "Querer",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Elf",
+      "en": "Eleven",
+      "es": "Once",
+      "fr": "Onze",
+      "it": "Undici",
+      "pt": "Onze",
+      "categoria": "numeros"
+    },
+    {
+      "de": "Zwölf",
+      "en": "Twelve",
+      "es": "Doce",
+      "fr": "Douze",
+      "it": "Dodici",
+      "pt": "Doze",
+      "categoria": "numeros"
+    },
+    {
+      "de": "Dreizehn",
+      "en": "Thirteen",
+      "es": "Trece",
+      "fr": "Treize",
+      "it": "Tredici",
+      "pt": "Treze",
+      "categoria": "numeros"
+    },
+    {
+      "de": "Vierzehn",
+      "en": "Fourteen",
+      "es": "Catorce",
+      "fr": "Quatorze",
+      "it": "Quattordici",
+      "pt": "Catorze",
+      "categoria": "numeros"
+    },
+    {
+      "de": "Fünfzehn",
+      "en": "Fifteen",
+      "es": "Quince",
+      "fr": "Quinze",
+      "it": "Quindici",
+      "pt": "Quinze",
+      "categoria": "numeros"
+    },
+    {
+      "de": "Sechzehn",
+      "en": "Sixteen",
+      "es": "Dieciséis",
+      "fr": "Seize",
+      "it": "Sedici",
+      "pt": "Dezasseis",
+      "categoria": "numeros"
+    },
+    {
+      "de": "Siebzehn",
+      "en": "Seventeen",
+      "es": "Diecisiete",
+      "fr": "Dix-sept",
+      "it": "Diciassette",
+      "pt": "Dezassete",
+      "categoria": "numeros"
+    },
+    {
+      "de": "Achtzehn",
+      "en": "Eighteen",
+      "es": "Dieciocho",
+      "fr": "Dix-huit",
+      "it": "Diciotto",
+      "pt": "Dezoito",
+      "categoria": "numeros"
+    },
+    {
+      "de": "Neunzehn",
+      "en": "Nineteen",
+      "es": "Diecinueve",
+      "fr": "Dix-neuf",
+      "it": "Diciannove",
+      "pt": "Dezanove",
+      "categoria": "numeros"
+    },
+    {
+      "de": "Zwanzig",
+      "en": "Twenty",
+      "es": "Veinte",
+      "fr": "Vingt",
+      "it": "Venti",
+      "pt": "Vinte",
+      "categoria": "numeros"
+    },
+    {
+      "de": "Dreißig",
+      "en": "Thirty",
+      "es": "Treinta",
+      "fr": "Trente",
+      "it": "Trenta",
+      "pt": "Trinta",
+      "categoria": "numeros"
+    },
+    {
+      "de": "Vierzig",
+      "en": "Forty",
+      "es": "Cuarenta",
+      "fr": "Quarante",
+      "it": "Quaranta",
+      "pt": "Quarenta",
+      "categoria": "numeros"
+    },
+    {
+      "de": "Fünfzig",
+      "en": "Fifty",
+      "es": "Cincuenta",
+      "fr": "Cinquante",
+      "it": "Cinquanta",
+      "pt": "Cinquenta",
+      "categoria": "numeros"
+    },
+    {
+      "de": "Sechzig",
+      "en": "Sixty",
+      "es": "Sesenta",
+      "fr": "Soixante",
+      "it": "Sessanta",
+      "pt": "Sessenta",
+      "categoria": "numeros"
+    },
+    {
+      "de": "Siebzig",
+      "en": "Seventy",
+      "es": "Setenta",
+      "fr": "Soixante-dix",
+      "it": "Settanta",
+      "pt": "Setenta",
+      "categoria": "numeros"
+    },
+    {
+      "de": "Achtzig",
+      "en": "Eighty",
+      "es": "Ochenta",
+      "fr": "Quatre-vingts",
+      "it": "Ottanta",
+      "pt": "Oitenta",
+      "categoria": "numeros"
+    },
+    {
+      "de": "Neunzig",
+      "en": "Ninety",
+      "es": "Noventa",
+      "fr": "Quatre-vingt-dix",
+      "it": "Novanta",
+      "pt": "Noventa",
+      "categoria": "numeros"
+    },
+    {
+      "de": "Hundert",
+      "en": "Hundred",
+      "es": "Cien",
+      "fr": "Cent",
+      "it": "Cento",
+      "pt": "Cem",
+      "categoria": "numeros"
+    },
+    {
+      "de": "Ehemann",
+      "en": "Husband",
+      "es": "Esposo",
+      "fr": "Mari",
+      "it": "Marito",
+      "pt": "Marido",
+      "categoria": "familia"
+    },
+    {
+      "de": "Ehefrau",
+      "en": "Wife",
+      "es": "Esposa",
+      "fr": "Épouse",
+      "it": "Moglie",
+      "pt": "Esposa",
+      "categoria": "familia"
+    },
+    {
+      "de": "Onkel",
+      "en": "Uncle",
+      "es": "Tío",
+      "fr": "Oncle",
+      "it": "Zio",
+      "pt": "Tio",
+      "categoria": "familia"
+    },
+    {
+      "de": "Tante",
+      "en": "Aunt",
+      "es": "Tía",
+      "fr": "Tante",
+      "it": "Zia",
+      "pt": "Tia",
+      "categoria": "familia"
+    },
+    {
+      "de": "Cousin",
+      "en": "Cousin",
+      "es": "Primo",
+      "fr": "Cousin",
+      "it": "Cugino",
+      "pt": "Primo",
+      "categoria": "familia"
+    },
+    {
+      "de": "Cousine",
+      "en": "Cousin",
+      "es": "Prima",
+      "fr": "Cousine",
+      "it": "Cugina",
+      "pt": "Prima",
+      "categoria": "familia"
+    },
+    {
+      "de": "Enkel",
+      "en": "Grandson",
+      "es": "Nieto",
+      "fr": "Petit-fils",
+      "it": "Nipote",
+      "pt": "Neto",
+      "categoria": "familia"
+    },
+    {
+      "de": "Enkelin",
+      "en": "Granddaughter",
+      "es": "Nieta",
+      "fr": "Petite-fille",
+      "it": "Nipote",
+      "pt": "Neta",
+      "categoria": "familia"
+    },
+    {
+      "de": "Baby",
+      "en": "Baby",
+      "es": "Bebé",
+      "fr": "Bébé",
+      "it": "Bebè",
+      "pt": "Bebé",
+      "categoria": "familia"
+    },
+    {
+      "de": "Rosa",
+      "en": "Pink",
+      "es": "Rosa",
+      "fr": "Rose",
+      "it": "Rosa",
+      "pt": "Rosa",
+      "categoria": "colores"
+    },
+    {
+      "de": "Braun",
+      "en": "Brown",
+      "es": "Marrón",
+      "fr": "Marron",
+      "it": "Marrone",
+      "pt": "Castanho",
+      "categoria": "colores"
+    },
+    {
+      "de": "Grau",
+      "en": "Grey",
+      "es": "Gris",
+      "fr": "Gris",
+      "it": "Grigio",
+      "pt": "Cinzento",
+      "categoria": "colores"
+    },
+    {
+      "de": "Orange",
+      "en": "Orange",
+      "es": "Naranja",
+      "fr": "Orange",
+      "it": "Arancione",
+      "pt": "Laranja",
+      "categoria": "colores"
+    },
+    {
+      "de": "Lila",
+      "en": "Purple",
+      "es": "Morado",
+      "fr": "Violet",
+      "it": "Viola",
+      "pt": "Roxo",
+      "categoria": "colores"
+    },
+    {
+      "de": "Ei",
+      "en": "Egg",
+      "es": "Huevo",
+      "fr": "Œuf",
+      "it": "Uovo",
+      "pt": "Ovo",
+      "categoria": "comida"
+    },
+    {
+      "de": "Fisch",
+      "en": "Fish",
+      "es": "Pescado",
+      "fr": "Poisson",
+      "it": "Pesce",
+      "pt": "Peixe",
+      "categoria": "comida"
+    },
+    {
+      "de": "Gemüse",
+      "en": "Vegetable",
+      "es": "Verdura",
+      "fr": "Légume",
+      "it": "Verdura",
+      "pt": "Legume",
+      "categoria": "comida"
+    },
+    {
+      "de": "Obst",
+      "en": "Fruit",
+      "es": "Fruta",
+      "fr": "Fruit",
+      "it": "Frutta",
+      "pt": "Fruta",
+      "categoria": "comida"
+    },
+    {
+      "de": "Salz",
+      "en": "Salt",
+      "es": "Sal",
+      "fr": "Sel",
+      "it": "Sale",
+      "pt": "Sal",
+      "categoria": "comida"
+    },
+    {
+      "de": "Zucker",
+      "en": "Sugar",
+      "es": "Azúcar",
+      "fr": "Sucre",
+      "it": "Zucchero",
+      "pt": "Açúcar",
+      "categoria": "comida"
+    },
+    {
+      "de": "Butter",
+      "en": "Butter",
+      "es": "Mantequilla",
+      "fr": "Beurre",
+      "it": "Burro",
+      "pt": "Manteiga",
+      "categoria": "comida"
+    },
+    {
+      "de": "Schinken",
+      "en": "Ham",
+      "es": "Jamón",
+      "fr": "Jambon",
+      "it": "Prosciutto",
+      "pt": "Presunto",
+      "categoria": "comida"
+    },
+    {
+      "de": "Suppe",
+      "en": "Soup",
+      "es": "Sopa",
+      "fr": "Soupe",
+      "it": "Zuppa",
+      "pt": "Sopa",
+      "categoria": "comida"
+    },
+    {
+      "de": "Banane",
+      "en": "Banana",
+      "es": "Plátano",
+      "fr": "Banane",
+      "it": "Banana",
+      "pt": "Banana",
+      "categoria": "comida"
+    },
+    {
+      "de": "Schlafen",
+      "en": "To sleep",
+      "es": "Dormir",
+      "fr": "Dormir",
+      "it": "Dormire",
+      "pt": "Dormir",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Verstehen",
+      "en": "To understand",
+      "es": "Entender",
+      "fr": "Comprendre",
+      "it": "Capire",
+      "pt": "Entender",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Studieren",
+      "en": "To study",
+      "es": "Estudiar",
+      "fr": "Étudier",
+      "it": "Studiare",
+      "pt": "Estudar",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Laufen",
+      "en": "To walk",
+      "es": "Caminar",
+      "fr": "Marcher",
+      "it": "Camminare",
+      "pt": "Caminhar",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Hören",
+      "en": "To listen",
+      "es": "Escuchar",
+      "fr": "Écouter",
+      "it": "Ascoltare",
+      "pt": "Escutar",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Schauen",
+      "en": "To look",
+      "es": "Mirar",
+      "fr": "Regarder",
+      "it": "Guardare",
+      "pt": "Olhar",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Schreiben",
+      "en": "To write",
+      "es": "Escribir",
+      "fr": "Écrire",
+      "it": "Scrivere",
+      "pt": "Escrever",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Lesen",
+      "en": "To read",
+      "es": "Leer",
+      "fr": "Lire",
+      "it": "Leggere",
+      "pt": "Ler",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Spielen",
+      "en": "To play",
+      "es": "Jugar",
+      "fr": "Jouer",
+      "it": "Giocare",
+      "pt": "Jogar",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Kaufen",
+      "en": "To buy",
+      "es": "Comprar",
+      "fr": "Acheter",
+      "it": "Comprare",
+      "pt": "Comprar",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Helfen",
+      "en": "To help",
+      "es": "Ayudar",
+      "fr": "Aider",
+      "it": "Aiutare",
+      "pt": "Ajudar",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Ankommen",
+      "en": "To arrive",
+      "es": "Llegar",
+      "fr": "Arriver",
+      "it": "Arrivare",
+      "pt": "Chegar",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Öffnen",
+      "en": "To open",
+      "es": "Abrir",
+      "fr": "Ouvrir",
+      "it": "Aprire",
+      "pt": "Abrir",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Schließen",
+      "en": "To close",
+      "es": "Cerrar",
+      "fr": "Fermer",
+      "it": "Chiudere",
+      "pt": "Fechar",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Heute",
+      "en": "Today",
+      "es": "Hoy",
+      "fr": "Aujourd'hui",
+      "it": "Oggi",
+      "pt": "Hoje",
+      "categoria": "tiempo_fechas"
+    },
+    {
+      "de": "Morgen",
+      "en": "Tomorrow",
+      "es": "Mañana",
+      "fr": "Demain",
+      "it": "Domani",
+      "pt": "Amanhã",
+      "categoria": "tiempo_fechas"
+    },
+    {
+      "de": "Gestern",
+      "en": "Yesterday",
+      "es": "Ayer",
+      "fr": "Hier",
+      "it": "Ieri",
+      "pt": "Ontem",
+      "categoria": "tiempo_fechas"
+    },
+    {
+      "de": "Woche",
+      "en": "Week",
+      "es": "Semana",
+      "fr": "Semaine",
+      "it": "Settimana",
+      "pt": "Semana",
+      "categoria": "tiempo_fechas"
+    },
+    {
+      "de": "Monat",
+      "en": "Month",
+      "es": "Mes",
+      "fr": "Mois",
+      "it": "Mese",
+      "pt": "Mês",
+      "categoria": "tiempo_fechas"
+    },
+    {
+      "de": "Jahr",
+      "en": "Year",
+      "es": "Año",
+      "fr": "Année",
+      "it": "Anno",
+      "pt": "Ano",
+      "categoria": "tiempo_fechas"
+    },
+    {
+      "de": "Tag",
+      "en": "Day",
+      "es": "Día",
+      "fr": "Jour",
+      "it": "Giorno",
+      "pt": "Dia",
+      "categoria": "tiempo_fechas"
+    },
+    {
+      "de": "Stunde",
+      "en": "Hour",
+      "es": "Hora",
+      "fr": "Heure",
+      "it": "Ora",
+      "pt": "Hora",
+      "categoria": "tiempo_fechas"
+    },
+    {
+      "de": "Minute",
+      "en": "Minute",
+      "es": "Minuto",
+      "fr": "Minute",
+      "it": "Minuto",
+      "pt": "Minuto",
+      "categoria": "tiempo_fechas"
+    },
+    {
+      "de": "Montag",
+      "en": "Monday",
+      "es": "Lunes",
+      "fr": "Lundi",
+      "it": "Lunedì",
+      "pt": "Segunda-feira",
+      "categoria": "tiempo_fechas"
+    },
+    {
+      "de": "Dienstag",
+      "en": "Tuesday",
+      "es": "Martes",
+      "fr": "Mardi",
+      "it": "Martedì",
+      "pt": "Terça-feira",
+      "categoria": "tiempo_fechas"
+    },
+    {
+      "de": "Mittwoch",
+      "en": "Wednesday",
+      "es": "Miércoles",
+      "fr": "Mercredi",
+      "it": "Mercoledì",
+      "pt": "Quarta-feira",
+      "categoria": "tiempo_fechas"
+    },
+    {
+      "de": "Donnerstag",
+      "en": "Thursday",
+      "es": "Jueves",
+      "fr": "Jeudi",
+      "it": "Giovedì",
+      "pt": "Quinta-feira",
+      "categoria": "tiempo_fechas"
+    },
+    {
+      "de": "Freitag",
+      "en": "Friday",
+      "es": "Viernes",
+      "fr": "Vendredi",
+      "it": "Venerdì",
+      "pt": "Sexta-feira",
+      "categoria": "tiempo_fechas"
+    },
+    {
+      "de": "Samstag",
+      "en": "Saturday",
+      "es": "Sábado",
+      "fr": "Samedi",
+      "it": "Sabato",
+      "pt": "Sábado",
+      "categoria": "tiempo_fechas"
+    },
+    {
+      "de": "Sonntag",
+      "en": "Sunday",
+      "es": "Domingo",
+      "fr": "Dimanche",
+      "it": "Domenica",
+      "pt": "Domingo",
+      "categoria": "tiempo_fechas"
+    },
+    {
+      "de": "Kopf",
+      "en": "Head",
+      "es": "Cabeza",
+      "fr": "Tête",
+      "it": "Testa",
+      "pt": "Cabeça",
+      "categoria": "cuerpo"
+    },
+    {
+      "de": "Hand",
+      "en": "Hand",
+      "es": "Mano",
+      "fr": "Main",
+      "it": "Mano",
+      "pt": "Mão",
+      "categoria": "cuerpo"
+    },
+    {
+      "de": "Fuß",
+      "en": "Foot",
+      "es": "Pie",
+      "fr": "Pied",
+      "it": "Piede",
+      "pt": "Pé",
+      "categoria": "cuerpo"
+    },
+    {
+      "de": "Auge",
+      "en": "Eye",
+      "es": "Ojo",
+      "fr": "Œil",
+      "it": "Occhio",
+      "pt": "Olho",
+      "categoria": "cuerpo"
+    },
+    {
+      "de": "Mund",
+      "en": "Mouth",
+      "es": "Boca",
+      "fr": "Bouche",
+      "it": "Bocca",
+      "pt": "Boca",
+      "categoria": "cuerpo"
+    },
+    {
+      "de": "Nase",
+      "en": "Nose",
+      "es": "Nariz",
+      "fr": "Nez",
+      "it": "Naso",
+      "pt": "Nariz",
+      "categoria": "cuerpo"
+    },
+    {
+      "de": "Ohr",
+      "en": "Ear",
+      "es": "Oreja",
+      "fr": "Oreille",
+      "it": "Orecchio",
+      "pt": "Orelha",
+      "categoria": "cuerpo"
+    },
+    {
+      "de": "Arm",
+      "en": "Arm",
+      "es": "Brazo",
+      "fr": "Bras",
+      "it": "Braccio",
+      "pt": "Braço",
+      "categoria": "cuerpo"
+    },
+    {
+      "de": "Bein",
+      "en": "Leg",
+      "es": "Pierna",
+      "fr": "Jambe",
+      "it": "Gamba",
+      "pt": "Perna",
+      "categoria": "cuerpo"
+    },
+    {
+      "de": "Haar",
+      "en": "Hair",
+      "es": "Pelo",
+      "fr": "Cheveux",
+      "it": "Capelli",
+      "pt": "Cabelo",
+      "categoria": "cuerpo"
+    },
+    {
+      "de": "Haus",
+      "en": "House",
+      "es": "Casa",
+      "fr": "Maison",
+      "it": "Casa",
+      "pt": "Casa",
+      "categoria": "lugares"
+    },
+    {
+      "de": "Schule",
+      "en": "School",
+      "es": "Escuela",
+      "fr": "École",
+      "it": "Scuola",
+      "pt": "Escola",
+      "categoria": "lugares"
+    },
+    {
+      "de": "Stadt",
+      "en": "City",
+      "es": "Ciudad",
+      "fr": "Ville",
+      "it": "Città",
+      "pt": "Cidade",
+      "categoria": "lugares"
+    },
+    {
+      "de": "Straße",
+      "en": "Street",
+      "es": "Calle",
+      "fr": "Rue",
+      "it": "Strada",
+      "pt": "Rua",
+      "categoria": "lugares"
+    },
+    {
+      "de": "Park",
+      "en": "Park",
+      "es": "Parque",
+      "fr": "Parc",
+      "it": "Parco",
+      "pt": "Parque",
+      "categoria": "lugares"
+    },
+    {
+      "de": "Geschäft",
+      "en": "Shop",
+      "es": "Tienda",
+      "fr": "Magasin",
+      "it": "Negozio",
+      "pt": "Loja",
+      "categoria": "lugares"
+    },
+    {
+      "de": "Krankenhaus",
+      "en": "Hospital",
+      "es": "Hospital",
+      "fr": "Hôpital",
+      "it": "Ospedale",
+      "pt": "Hospital",
+      "categoria": "lugares"
+    },
+    {
+      "de": "Restaurant",
+      "en": "Restaurant",
+      "es": "Restaurante",
+      "fr": "Restaurant",
+      "it": "Ristorante",
+      "pt": "Restaurante",
+      "categoria": "lugares"
+    },
+    {
+      "de": "Flughafen",
+      "en": "Airport",
+      "es": "Aeropuerto",
+      "fr": "Aéroport",
+      "it": "Aeroporto",
+      "pt": "Aeroporto",
+      "categoria": "lugares"
+    },
+    {
+      "de": "Hotel",
+      "en": "Hotel",
+      "es": "Hotel",
+      "fr": "Hôtel",
+      "it": "Hotel",
+      "pt": "Hotel",
+      "categoria": "lugares"
+    },
+    {
+      "de": "Auto",
+      "en": "Car",
+      "es": "Coche",
+      "fr": "Voiture",
+      "it": "Macchina",
+      "pt": "Carro",
+      "categoria": "transporte"
+    },
+    {
+      "de": "Bus",
+      "en": "Bus",
+      "es": "Autobús",
+      "fr": "Bus",
+      "it": "Autobus",
+      "pt": "Autocarro",
+      "categoria": "transporte"
+    },
+    {
+      "de": "Zug",
+      "en": "Train",
+      "es": "Tren",
+      "fr": "Train",
+      "it": "Treno",
+      "pt": "Comboio",
+      "categoria": "transporte"
+    },
+    {
+      "de": "Flugzeug",
+      "en": "Plane",
+      "es": "Avión",
+      "fr": "Avion",
+      "it": "Aereo",
+      "pt": "Avião",
+      "categoria": "transporte"
+    },
+    {
+      "de": "Fahrrad",
+      "en": "Bicycle",
+      "es": "Bicicleta",
+      "fr": "Vélo",
+      "it": "Bicicletta",
+      "pt": "Bicicleta",
+      "categoria": "transporte"
+    },
+    {
+      "de": "Taxi",
+      "en": "Taxi",
+      "es": "Taxi",
+      "fr": "Taxi",
+      "it": "Taxi",
+      "pt": "Táxi",
+      "categoria": "transporte"
+    },
+    {
+      "de": "Boot",
+      "en": "Boat",
+      "es": "Barco",
+      "fr": "Bateau",
+      "it": "Barca",
+      "pt": "Barco",
+      "categoria": "transporte"
+    },
+    {
+      "de": "U-Bahn",
+      "en": "Subway",
+      "es": "Metro",
+      "fr": "Métro",
+      "it": "Metropolitana",
+      "pt": "Metro",
+      "categoria": "transporte"
+    },
+    {
+      "de": "Hund",
+      "en": "Dog",
+      "es": "Perro",
+      "fr": "Chien",
+      "it": "Cane",
+      "pt": "Cão",
+      "categoria": "animales"
+    },
+    {
+      "de": "Katze",
+      "en": "Cat",
+      "es": "Gato",
+      "fr": "Chat",
+      "it": "Gatto",
+      "pt": "Gato",
+      "categoria": "animales"
+    },
+    {
+      "de": "Vogel",
+      "en": "Bird",
+      "es": "Pájaro",
+      "fr": "Oiseau",
+      "it": "Uccello",
+      "pt": "Pássaro",
+      "categoria": "animales"
+    },
+    {
+      "de": "Fisch",
+      "en": "Fish",
+      "es": "Pez",
+      "fr": "Poisson",
+      "it": "Pesce",
+      "pt": "Peixe",
+      "categoria": "animales"
+    },
+    {
+      "de": "Pferd",
+      "en": "Horse",
+      "es": "Caballo",
+      "fr": "Cheval",
+      "it": "Cavallo",
+      "pt": "Cavalo",
+      "categoria": "animales"
+    },
+    {
+      "de": "Kuh",
+      "en": "Cow",
+      "es": "Vaca",
+      "fr": "Vache",
+      "it": "Mucca",
+      "pt": "Vaca",
+      "categoria": "animales"
+    },
+    {
+      "de": "Maus",
+      "en": "Mouse",
+      "es": "Ratón",
+      "fr": "Souris",
+      "it": "Topo",
+      "pt": "Rato",
+      "categoria": "animales"
+    },
+    {
+      "de": "Löwe",
+      "en": "Lion",
+      "es": "León",
+      "fr": "Lion",
+      "it": "Leone",
+      "pt": "Leão",
+      "categoria": "animales"
+    }
   ],
   "A2": [
-    { "categoria": "frases_utiles", "es": "¿Dónde está el baño?", "fr": "Où sont les toilettes ?", "pt": "Onde fica a casa de banho?", "it": "Dov'è il bagno?" },
-    { "categoria": "frases_utiles", "es": "¿Cuánto cuesta?", "fr": "Combien ça coûte ?", "pt": "Quanto custa?", "it": "Quanto costa?" },
-    { "categoria": "frases_utiles", "es": "No entiendo", "fr": "Je ne comprends pas", "pt": "Não percebo", "it": "Non capisco" },
-    { "categoria": "frases_utiles", "es": "¿Puedes repetir, por favor?", "fr": "Pouvez-vous répéter, s'il vous plaît ?", "pt": "Pode repetir, por favor?", "it": "Può ripetere, per favore?" },
-    { "categoria": "frases_utiles", "es": "Estoy perdido", "fr": "Je suis perdu", "pt": "Estou perdido", "it": "Sono perso" },
-    { "categoria": "frases_utiles", "es": "¿A qué hora abre?", "fr": "À quelle heure ça ouvre ?", "pt": "A que horas abre?", "it": "A che ora apre?" },
-    { "categoria": "frases_utiles", "es": "La cuenta, por favor", "fr": "L'addition, s'il vous plaît", "pt": "A conta, por favor", "it": "Il conto, per favore" },
-    { "categoria": "frases_utiles", "es": "¿Hablas inglés?", "fr": "Parlez-vous anglais ?", "pt": "Fala inglês?", "it": "Parli inglese?" },
-    { "categoria": "frases_utiles", "es": "Necesito ayuda", "fr": "J'ai besoin d'aide", "pt": "Preciso de ajuda", "it": "Ho bisogno di aiuto" },
-    { "categoria": "frases_utiles", "es": "¿Dónde está la estación?", "fr": "Où est la gare ?", "pt": "Onde fica a estação?", "it": "Dov'è la stazione?" },
-    { "categoria": "verbos", "es": "Poder", "fr": "Pouvoir", "pt": "Poder", "it": "Potere" },
-    { "categoria": "verbos", "es": "Hacer", "fr": "Faire", "pt": "Fazer", "it": "Fare" },
-    { "categoria": "verbos", "es": "Ir", "fr": "Aller", "pt": "Ir", "it": "Andare" },
-    { "categoria": "verbos", "es": "Venir", "fr": "Venir", "pt": "Vir", "it": "Venire" },
-    { "categoria": "verbos", "es": "Saber", "fr": "Savoir", "pt": "Saber", "it": "Sapere" },
-    { "categoria": "verbos", "es": "Ver", "fr": "Voir", "pt": "Ver", "it": "Vedere" },
-    { "categoria": "verbos", "es": "Dar", "fr": "Donner", "pt": "Dar", "it": "Dare" },
-    { "categoria": "verbos", "es": "Decir", "fr": "Dire", "pt": "Dizer", "it": "Dire" },
-    { "categoria": "verbos", "es": "Salir", "fr": "Sortir", "pt": "Sair", "it": "Uscire" },
-    { "categoria": "verbos", "es": "Trabajar", "fr": "Travailler", "pt": "Trabalhar", "it": "Lavorare" },
-    { "categoria": "ropa", "es": "Camisa", "fr": "Chemise", "pt": "Camisa", "it": "Camicia" },
-    { "categoria": "ropa", "es": "Pantalón", "fr": "Pantalon", "pt": "Calças", "it": "Pantaloni" },
-    { "categoria": "ropa", "es": "Zapatos", "fr": "Chaussures", "pt": "Sapatos", "it": "Scarpe" },
-    { "categoria": "ropa", "es": "Chaqueta", "fr": "Veste", "pt": "Casaco", "it": "Giacca" },
-    { "categoria": "ropa", "es": "Vestido", "fr": "Robe", "pt": "Vestido", "it": "Vestito" },
-    { "categoria": "ropa", "es": "Sombrero", "fr": "Chapeau", "pt": "Chapéu", "it": "Cappello" },
-    { "categoria": "ropa", "es": "Calcetines", "fr": "Chaussettes", "pt": "Meias", "it": "Calzini" },
-    { "categoria": "ropa", "es": "Abrigo", "fr": "Manteau", "pt": "Sobretudo", "it": "Cappotto" },
-    { "categoria": "casa", "es": "Cocina", "fr": "Cuisine", "pt": "Cozinha", "it": "Cucina" },
-    { "categoria": "casa", "es": "Dormitorio", "fr": "Chambre", "pt": "Quarto", "it": "Camera da letto" },
-    { "categoria": "casa", "es": "Baño", "fr": "Salle de bain", "pt": "Casa de banho", "it": "Bagno" },
-    { "categoria": "casa", "es": "Salón", "fr": "Salon", "pt": "Sala de estar", "it": "Soggiorno" },
-    { "categoria": "casa", "es": "Jardín", "fr": "Jardin", "pt": "Jardim", "it": "Giardino" },
-    { "categoria": "casa", "es": "Puerta", "fr": "Porte", "pt": "Porta", "it": "Porta" },
-    { "categoria": "casa", "es": "Ventana", "fr": "Fenêtre", "pt": "Janela", "it": "Finestra" },
-    { "categoria": "casa", "es": "Mesa", "fr": "Table", "pt": "Mesa", "it": "Tavolo" },
-    { "categoria": "clima", "es": "Sol", "fr": "Soleil", "pt": "Sol", "it": "Sole" },
-    { "categoria": "clima", "es": "Lluvia", "fr": "Pluie", "pt": "Chuva", "it": "Pioggia" },
-    { "categoria": "clima", "es": "Nieve", "fr": "Neige", "pt": "Neve", "it": "Neve" },
-    { "categoria": "clima", "es": "Viento", "fr": "Vent", "pt": "Vento", "it": "Vento" },
-    { "categoria": "clima", "es": "Calor", "fr": "Chaleur", "pt": "Calor", "it": "Caldo" },
-    { "categoria": "clima", "es": "Frío", "fr": "Froid", "pt": "Frio", "it": "Freddo" },
-    { "categoria": "clima", "es": "Nube", "fr": "Nuage", "pt": "Nuvem", "it": "Nuvola" },
-    { "categoria": "clima", "es": "Tormenta", "fr": "Orage", "pt": "Tempestade", "it": "Temporale" },
-    { "categoria": "adjetivos", "es": "Grande", "fr": "Grand", "pt": "Grande", "it": "Grande" },
-    { "categoria": "adjetivos", "es": "Pequeño", "fr": "Petit", "pt": "Pequeno", "it": "Piccolo" },
-    { "categoria": "adjetivos", "es": "Rápido", "fr": "Rapide", "pt": "Rápido", "it": "Veloce" },
-    { "categoria": "adjetivos", "es": "Lento", "fr": "Lent", "pt": "Lento", "it": "Lento" },
-    { "categoria": "adjetivos", "es": "Feliz", "fr": "Heureux", "pt": "Feliz", "it": "Felice" },
-    { "categoria": "adjetivos", "es": "Triste", "fr": "Triste", "pt": "Triste", "it": "Triste" },
-    { "categoria": "adjetivos", "es": "Fácil", "fr": "Facile", "pt": "Fácil", "it": "Facile" },
-    { "categoria": "adjetivos", "es": "Difícil", "fr": "Difficile", "pt": "Difícil", "it": "Difficile" }
+    {
+      "de": "Wo ist die Toilette?",
+      "en": "Where is the bathroom?",
+      "es": "¿Dónde está el baño?",
+      "fr": "Où sont les toilettes ?",
+      "it": "Dov'è il bagno?",
+      "pt": "Onde fica a casa de banho?",
+      "categoria": "frases_utiles"
+    },
+    {
+      "de": "Wie viel kostet das?",
+      "en": "How much does it cost?",
+      "es": "¿Cuánto cuesta?",
+      "fr": "Combien ça coûte ?",
+      "it": "Quanto costa?",
+      "pt": "Quanto custa?",
+      "categoria": "frases_utiles"
+    },
+    {
+      "de": "Ich verstehe nicht",
+      "en": "I don't understand",
+      "es": "No entiendo",
+      "fr": "Je ne comprends pas",
+      "it": "Non capisco",
+      "pt": "Não percebo",
+      "categoria": "frases_utiles"
+    },
+    {
+      "de": "Kannst du das bitte wiederholen?",
+      "en": "Can you repeat, please?",
+      "es": "¿Puedes repetir, por favor?",
+      "fr": "Pouvez-vous répéter, s'il vous plaît ?",
+      "it": "Può ripetere, per favore?",
+      "pt": "Pode repetir, por favor?",
+      "categoria": "frases_utiles"
+    },
+    {
+      "de": "Ich habe mich verlaufen",
+      "en": "I am lost",
+      "es": "Estoy perdido",
+      "fr": "Je suis perdu",
+      "it": "Sono perso",
+      "pt": "Estou perdido",
+      "categoria": "frases_utiles"
+    },
+    {
+      "de": "Wann öffnet es?",
+      "en": "What time does it open?",
+      "es": "¿A qué hora abre?",
+      "fr": "À quelle heure ça ouvre ?",
+      "it": "A che ora apre?",
+      "pt": "A que horas abre?",
+      "categoria": "frases_utiles"
+    },
+    {
+      "de": "Die Rechnung, bitte",
+      "en": "The bill, please",
+      "es": "La cuenta, por favor",
+      "fr": "L'addition, s'il vous plaît",
+      "it": "Il conto, per favore",
+      "pt": "A conta, por favor",
+      "categoria": "frases_utiles"
+    },
+    {
+      "de": "Sprichst du Englisch?",
+      "en": "Do you speak English?",
+      "es": "¿Hablas inglés?",
+      "fr": "Parlez-vous anglais ?",
+      "it": "Parli inglese?",
+      "pt": "Fala inglês?",
+      "categoria": "frases_utiles"
+    },
+    {
+      "de": "Ich brauche Hilfe",
+      "en": "I need help",
+      "es": "Necesito ayuda",
+      "fr": "J'ai besoin d'aide",
+      "it": "Ho bisogno di aiuto",
+      "pt": "Preciso de ajuda",
+      "categoria": "frases_utiles"
+    },
+    {
+      "de": "Wo ist der Bahnhof?",
+      "en": "Where is the station?",
+      "es": "¿Dónde está la estación?",
+      "fr": "Où est la gare ?",
+      "it": "Dov'è la stazione?",
+      "pt": "Onde fica a estação?",
+      "categoria": "frases_utiles"
+    },
+    {
+      "de": "Können",
+      "en": "To be able to",
+      "es": "Poder",
+      "fr": "Pouvoir",
+      "it": "Potere",
+      "pt": "Poder",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Machen",
+      "en": "To do",
+      "es": "Hacer",
+      "fr": "Faire",
+      "it": "Fare",
+      "pt": "Fazer",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Gehen",
+      "en": "To go",
+      "es": "Ir",
+      "fr": "Aller",
+      "it": "Andare",
+      "pt": "Ir",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Kommen",
+      "en": "To come",
+      "es": "Venir",
+      "fr": "Venir",
+      "it": "Venire",
+      "pt": "Vir",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Wissen",
+      "en": "To know",
+      "es": "Saber",
+      "fr": "Savoir",
+      "it": "Sapere",
+      "pt": "Saber",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Sehen",
+      "en": "To see",
+      "es": "Ver",
+      "fr": "Voir",
+      "it": "Vedere",
+      "pt": "Ver",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Geben",
+      "en": "To give",
+      "es": "Dar",
+      "fr": "Donner",
+      "it": "Dare",
+      "pt": "Dar",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Sagen",
+      "en": "To say",
+      "es": "Decir",
+      "fr": "Dire",
+      "it": "Dire",
+      "pt": "Dizer",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Ausgehen",
+      "en": "To go out",
+      "es": "Salir",
+      "fr": "Sortir",
+      "it": "Uscire",
+      "pt": "Sair",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Arbeiten",
+      "en": "To work",
+      "es": "Trabajar",
+      "fr": "Travailler",
+      "it": "Lavorare",
+      "pt": "Trabalhar",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Hemd",
+      "en": "Shirt",
+      "es": "Camisa",
+      "fr": "Chemise",
+      "it": "Camicia",
+      "pt": "Camisa",
+      "categoria": "ropa"
+    },
+    {
+      "de": "Hose",
+      "en": "Trousers",
+      "es": "Pantalón",
+      "fr": "Pantalon",
+      "it": "Pantaloni",
+      "pt": "Calças",
+      "categoria": "ropa"
+    },
+    {
+      "de": "Schuhe",
+      "en": "Shoes",
+      "es": "Zapatos",
+      "fr": "Chaussures",
+      "it": "Scarpe",
+      "pt": "Sapatos",
+      "categoria": "ropa"
+    },
+    {
+      "de": "Jacke",
+      "en": "Jacket",
+      "es": "Chaqueta",
+      "fr": "Veste",
+      "it": "Giacca",
+      "pt": "Casaco",
+      "categoria": "ropa"
+    },
+    {
+      "de": "Kleid",
+      "en": "Dress",
+      "es": "Vestido",
+      "fr": "Robe",
+      "it": "Vestito",
+      "pt": "Vestido",
+      "categoria": "ropa"
+    },
+    {
+      "de": "Hut",
+      "en": "Hat",
+      "es": "Sombrero",
+      "fr": "Chapeau",
+      "it": "Cappello",
+      "pt": "Chapéu",
+      "categoria": "ropa"
+    },
+    {
+      "de": "Socken",
+      "en": "Socks",
+      "es": "Calcetines",
+      "fr": "Chaussettes",
+      "it": "Calzini",
+      "pt": "Meias",
+      "categoria": "ropa"
+    },
+    {
+      "de": "Mantel",
+      "en": "Coat",
+      "es": "Abrigo",
+      "fr": "Manteau",
+      "it": "Cappotto",
+      "pt": "Sobretudo",
+      "categoria": "ropa"
+    },
+    {
+      "de": "Küche",
+      "en": "Kitchen",
+      "es": "Cocina",
+      "fr": "Cuisine",
+      "it": "Cucina",
+      "pt": "Cozinha",
+      "categoria": "casa"
+    },
+    {
+      "de": "Schlafzimmer",
+      "en": "Bedroom",
+      "es": "Dormitorio",
+      "fr": "Chambre",
+      "it": "Camera da letto",
+      "pt": "Quarto",
+      "categoria": "casa"
+    },
+    {
+      "de": "Badezimmer",
+      "en": "Bathroom",
+      "es": "Baño",
+      "fr": "Salle de bain",
+      "it": "Bagno",
+      "pt": "Casa de banho",
+      "categoria": "casa"
+    },
+    {
+      "de": "Wohnzimmer",
+      "en": "Living room",
+      "es": "Salón",
+      "fr": "Salon",
+      "it": "Soggiorno",
+      "pt": "Sala de estar",
+      "categoria": "casa"
+    },
+    {
+      "de": "Garten",
+      "en": "Garden",
+      "es": "Jardín",
+      "fr": "Jardin",
+      "it": "Giardino",
+      "pt": "Jardim",
+      "categoria": "casa"
+    },
+    {
+      "de": "Tür",
+      "en": "Door",
+      "es": "Puerta",
+      "fr": "Porte",
+      "it": "Porta",
+      "pt": "Porta",
+      "categoria": "casa"
+    },
+    {
+      "de": "Fenster",
+      "en": "Window",
+      "es": "Ventana",
+      "fr": "Fenêtre",
+      "it": "Finestra",
+      "pt": "Janela",
+      "categoria": "casa"
+    },
+    {
+      "de": "Tisch",
+      "en": "Table",
+      "es": "Mesa",
+      "fr": "Table",
+      "it": "Tavolo",
+      "pt": "Mesa",
+      "categoria": "casa"
+    },
+    {
+      "de": "Sonne",
+      "en": "Sun",
+      "es": "Sol",
+      "fr": "Soleil",
+      "it": "Sole",
+      "pt": "Sol",
+      "categoria": "clima"
+    },
+    {
+      "de": "Regen",
+      "en": "Rain",
+      "es": "Lluvia",
+      "fr": "Pluie",
+      "it": "Pioggia",
+      "pt": "Chuva",
+      "categoria": "clima"
+    },
+    {
+      "de": "Schnee",
+      "en": "Snow",
+      "es": "Nieve",
+      "fr": "Neige",
+      "it": "Neve",
+      "pt": "Neve",
+      "categoria": "clima"
+    },
+    {
+      "de": "Wind",
+      "en": "Wind",
+      "es": "Viento",
+      "fr": "Vent",
+      "it": "Vento",
+      "pt": "Vento",
+      "categoria": "clima"
+    },
+    {
+      "de": "Hitze",
+      "en": "Heat",
+      "es": "Calor",
+      "fr": "Chaleur",
+      "it": "Caldo",
+      "pt": "Calor",
+      "categoria": "clima"
+    },
+    {
+      "de": "Kälte",
+      "en": "Cold",
+      "es": "Frío",
+      "fr": "Froid",
+      "it": "Freddo",
+      "pt": "Frio",
+      "categoria": "clima"
+    },
+    {
+      "de": "Wolke",
+      "en": "Cloud",
+      "es": "Nube",
+      "fr": "Nuage",
+      "it": "Nuvola",
+      "pt": "Nuvem",
+      "categoria": "clima"
+    },
+    {
+      "de": "Sturm",
+      "en": "Storm",
+      "es": "Tormenta",
+      "fr": "Orage",
+      "it": "Temporale",
+      "pt": "Tempestade",
+      "categoria": "clima"
+    },
+    {
+      "de": "Groß",
+      "en": "Big",
+      "es": "Grande",
+      "fr": "Grand",
+      "it": "Grande",
+      "pt": "Grande",
+      "categoria": "adjetivos"
+    },
+    {
+      "de": "Klein",
+      "en": "Small",
+      "es": "Pequeño",
+      "fr": "Petit",
+      "it": "Piccolo",
+      "pt": "Pequeno",
+      "categoria": "adjetivos"
+    },
+    {
+      "de": "Schnell",
+      "en": "Fast",
+      "es": "Rápido",
+      "fr": "Rapide",
+      "it": "Veloce",
+      "pt": "Rápido",
+      "categoria": "adjetivos"
+    },
+    {
+      "de": "Langsam",
+      "en": "Slow",
+      "es": "Lento",
+      "fr": "Lent",
+      "it": "Lento",
+      "pt": "Lento",
+      "categoria": "adjetivos"
+    },
+    {
+      "de": "Glücklich",
+      "en": "Happy",
+      "es": "Feliz",
+      "fr": "Heureux",
+      "it": "Felice",
+      "pt": "Feliz",
+      "categoria": "adjetivos"
+    },
+    {
+      "de": "Traurig",
+      "en": "Sad",
+      "es": "Triste",
+      "fr": "Triste",
+      "it": "Triste",
+      "pt": "Triste",
+      "categoria": "adjetivos"
+    },
+    {
+      "de": "Einfach",
+      "en": "Easy",
+      "es": "Fácil",
+      "fr": "Facile",
+      "it": "Facile",
+      "pt": "Fácil",
+      "categoria": "adjetivos"
+    },
+    {
+      "de": "Schwierig",
+      "en": "Difficult",
+      "es": "Difícil",
+      "fr": "Difficile",
+      "it": "Difficile",
+      "pt": "Difícil",
+      "categoria": "adjetivos"
+    },
+    {
+      "de": "Büro",
+      "en": "Office",
+      "es": "Oficina",
+      "fr": "Bureau",
+      "it": "Ufficio",
+      "pt": "Escritório",
+      "categoria": "trabajo"
+    },
+    {
+      "de": "Chef",
+      "en": "Boss",
+      "es": "Jefe",
+      "fr": "Chef",
+      "it": "Capo",
+      "pt": "Chefe",
+      "categoria": "trabajo"
+    },
+    {
+      "de": "Angestellter",
+      "en": "Employee",
+      "es": "Empleado",
+      "fr": "Employé",
+      "it": "Impiegato",
+      "pt": "Empregado",
+      "categoria": "trabajo"
+    },
+    {
+      "de": "Besprechung",
+      "en": "Meeting",
+      "es": "Reunión",
+      "fr": "Réunion",
+      "it": "Riunione",
+      "pt": "Reunião",
+      "categoria": "trabajo"
+    },
+    {
+      "de": "Lebenslauf",
+      "en": "Résumé",
+      "es": "Currículum",
+      "fr": "CV",
+      "it": "Curriculum",
+      "pt": "Currículo",
+      "categoria": "trabajo"
+    },
+    {
+      "de": "Vorstellungsgespräch",
+      "en": "Interview",
+      "es": "Entrevista",
+      "fr": "Entretien",
+      "it": "Colloquio",
+      "pt": "Entrevista",
+      "categoria": "trabajo"
+    },
+    {
+      "de": "Gehalt",
+      "en": "Salary",
+      "es": "Salario",
+      "fr": "Salaire",
+      "it": "Stipendio",
+      "pt": "Salário",
+      "categoria": "trabajo"
+    },
+    {
+      "de": "Firma",
+      "en": "Company",
+      "es": "Empresa",
+      "fr": "Entreprise",
+      "it": "Azienda",
+      "pt": "Empresa",
+      "categoria": "trabajo"
+    },
+    {
+      "de": "Zeitplan",
+      "en": "Schedule",
+      "es": "Horario",
+      "fr": "Horaire",
+      "it": "Orario",
+      "pt": "Horário",
+      "categoria": "trabajo"
+    },
+    {
+      "de": "Kollege",
+      "en": "Coworker",
+      "es": "Compañero de trabajo",
+      "fr": "Collègue",
+      "it": "Collega",
+      "pt": "Colega de trabalho",
+      "categoria": "trabajo"
+    },
+    {
+      "de": "Arzt",
+      "en": "Doctor",
+      "es": "Médico",
+      "fr": "Médecin",
+      "it": "Medico",
+      "pt": "Médico",
+      "categoria": "salud"
+    },
+    {
+      "de": "Krankenschwester",
+      "en": "Nurse",
+      "es": "Enfermera",
+      "fr": "Infirmière",
+      "it": "Infermiera",
+      "pt": "Enfermeira",
+      "categoria": "salud"
+    },
+    {
+      "de": "Medizin",
+      "en": "Medicine",
+      "es": "Medicina",
+      "fr": "Médicament",
+      "it": "Medicina",
+      "pt": "Medicamento",
+      "categoria": "salud"
+    },
+    {
+      "de": "Schmerz",
+      "en": "Pain",
+      "es": "Dolor",
+      "fr": "Douleur",
+      "it": "Dolore",
+      "pt": "Dor",
+      "categoria": "salud"
+    },
+    {
+      "de": "Fieber",
+      "en": "Fever",
+      "es": "Fiebre",
+      "fr": "Fièvre",
+      "it": "Febbre",
+      "pt": "Febre",
+      "categoria": "salud"
+    },
+    {
+      "de": "Rezept",
+      "en": "Prescription",
+      "es": "Receta",
+      "fr": "Ordonnance",
+      "it": "Ricetta",
+      "pt": "Receita",
+      "categoria": "salud"
+    },
+    {
+      "de": "Apotheke",
+      "en": "Pharmacy",
+      "es": "Farmacia",
+      "fr": "Pharmacie",
+      "it": "Farmacia",
+      "pt": "Farmácia",
+      "categoria": "salud"
+    },
+    {
+      "de": "Termin",
+      "en": "Appointment",
+      "es": "Cita",
+      "fr": "Rendez-vous",
+      "it": "Appuntamento",
+      "pt": "Consulta",
+      "categoria": "salud"
+    },
+    {
+      "de": "Krankheit",
+      "en": "Illness",
+      "es": "Enfermedad",
+      "fr": "Maladie",
+      "it": "Malattia",
+      "pt": "Doença",
+      "categoria": "salud"
+    },
+    {
+      "de": "Krankenwagen",
+      "en": "Ambulance",
+      "es": "Ambulancia",
+      "fr": "Ambulance",
+      "it": "Ambulanza",
+      "pt": "Ambulância",
+      "categoria": "salud"
+    },
+    {
+      "de": "Computer",
+      "en": "Computer",
+      "es": "Ordenador",
+      "fr": "Ordinateur",
+      "it": "Computer",
+      "pt": "Computador",
+      "categoria": "tecnologia"
+    },
+    {
+      "de": "Handy",
+      "en": "Mobile phone",
+      "es": "Teléfono móvil",
+      "fr": "Téléphone portable",
+      "it": "Cellulare",
+      "pt": "Telemóvel",
+      "categoria": "tecnologia"
+    },
+    {
+      "de": "Internet",
+      "en": "Internet",
+      "es": "Internet",
+      "fr": "Internet",
+      "it": "Internet",
+      "pt": "Internet",
+      "categoria": "tecnologia"
+    },
+    {
+      "de": "Passwort",
+      "en": "Password",
+      "es": "Contraseña",
+      "fr": "Mot de passe",
+      "it": "Password",
+      "pt": "Palavra-passe",
+      "categoria": "tecnologia"
+    },
+    {
+      "de": "E-Mail",
+      "en": "Email",
+      "es": "Correo electrónico",
+      "fr": "E-mail",
+      "it": "E-mail",
+      "pt": "E-mail",
+      "categoria": "tecnologia"
+    },
+    {
+      "de": "App",
+      "en": "App",
+      "es": "Aplicación",
+      "fr": "Application",
+      "it": "Applicazione",
+      "pt": "Aplicação",
+      "categoria": "tecnologia"
+    },
+    {
+      "de": "Bildschirm",
+      "en": "Screen",
+      "es": "Pantalla",
+      "fr": "Écran",
+      "it": "Schermo",
+      "pt": "Ecrã",
+      "categoria": "tecnologia"
+    },
+    {
+      "de": "Akku",
+      "en": "Battery",
+      "es": "Batería",
+      "fr": "Batterie",
+      "it": "Batteria",
+      "pt": "Bateria",
+      "categoria": "tecnologia"
+    },
+    {
+      "de": "WLAN",
+      "en": "Wifi",
+      "es": "Wifi",
+      "fr": "Wifi",
+      "it": "Wifi",
+      "pt": "Wifi",
+      "categoria": "tecnologia"
+    },
+    {
+      "de": "Drucker",
+      "en": "Printer",
+      "es": "Impresora",
+      "fr": "Imprimante",
+      "it": "Stampante",
+      "pt": "Impressora",
+      "categoria": "tecnologia"
+    },
+    {
+      "de": "Preis",
+      "en": "Price",
+      "es": "Precio",
+      "fr": "Prix",
+      "it": "Prezzo",
+      "pt": "Preço",
+      "categoria": "compras"
+    },
+    {
+      "de": "Angebot",
+      "en": "Offer",
+      "es": "Oferta",
+      "fr": "Offre",
+      "it": "Offerta",
+      "pt": "Oferta",
+      "categoria": "compras"
+    },
+    {
+      "de": "Ausverkauf",
+      "en": "Sales",
+      "es": "Rebajas",
+      "fr": "Soldes",
+      "it": "Saldi",
+      "pt": "Saldos",
+      "categoria": "compras"
+    },
+    {
+      "de": "Umkleidekabine",
+      "en": "Fitting room",
+      "es": "Probador",
+      "fr": "Cabine d'essayage",
+      "it": "Camerino",
+      "pt": "Provador",
+      "categoria": "compras"
+    },
+    {
+      "de": "Größe",
+      "en": "Size",
+      "es": "Talla",
+      "fr": "Taille",
+      "it": "Taglia",
+      "pt": "Tamanho",
+      "categoria": "compras"
+    },
+    {
+      "de": "Bargeld",
+      "en": "Cash",
+      "es": "Efectivo",
+      "fr": "Espèces",
+      "it": "Contanti",
+      "pt": "Dinheiro",
+      "categoria": "compras"
+    },
+    {
+      "de": "Kreditkarte",
+      "en": "Credit card",
+      "es": "Tarjeta de crédito",
+      "fr": "Carte de crédit",
+      "it": "Carta di credito",
+      "pt": "Cartão de crédito",
+      "categoria": "compras"
+    },
+    {
+      "de": "Quittung",
+      "en": "Receipt",
+      "es": "Recibo",
+      "fr": "Reçu",
+      "it": "Ricevuta",
+      "pt": "Recibo",
+      "categoria": "compras"
+    },
+    {
+      "de": "Einkaufswagen",
+      "en": "Cart",
+      "es": "Carrito",
+      "fr": "Chariot",
+      "it": "Carrello",
+      "pt": "Carrinho",
+      "categoria": "compras"
+    },
+    {
+      "de": "Wechselgeld",
+      "en": "Change",
+      "es": "Cambio",
+      "fr": "Monnaie",
+      "it": "Resto",
+      "pt": "Troco",
+      "categoria": "compras"
+    },
+    {
+      "de": "Freude",
+      "en": "Joy",
+      "es": "Alegría",
+      "fr": "Joie",
+      "it": "Gioia",
+      "pt": "Alegria",
+      "categoria": "emociones"
+    },
+    {
+      "de": "Angst",
+      "en": "Fear",
+      "es": "Miedo",
+      "fr": "Peur",
+      "it": "Paura",
+      "pt": "Medo",
+      "categoria": "emociones"
+    },
+    {
+      "de": "Überraschung",
+      "en": "Surprise",
+      "es": "Sorpresa",
+      "fr": "Surprise",
+      "it": "Sorpresa",
+      "pt": "Surpresa",
+      "categoria": "emociones"
+    },
+    {
+      "de": "Wut",
+      "en": "Anger",
+      "es": "Enfado",
+      "fr": "Colère",
+      "it": "Rabbia",
+      "pt": "Raiva",
+      "categoria": "emociones"
+    },
+    {
+      "de": "Liebe",
+      "en": "Love",
+      "es": "Amor",
+      "fr": "Amour",
+      "it": "Amore",
+      "pt": "Amor",
+      "categoria": "emociones"
+    },
+    {
+      "de": "Langeweile",
+      "en": "Boredom",
+      "es": "Aburrimiento",
+      "fr": "Ennui",
+      "it": "Noia",
+      "pt": "Tédio",
+      "categoria": "emociones"
+    },
+    {
+      "de": "Nervosität",
+      "en": "Nervousness",
+      "es": "Nervios",
+      "fr": "Nervosité",
+      "it": "Nervosismo",
+      "pt": "Nervosismo",
+      "categoria": "emociones"
+    },
+    {
+      "de": "Stolz",
+      "en": "Pride",
+      "es": "Orgullo",
+      "fr": "Fierté",
+      "it": "Orgoglio",
+      "pt": "Orgulho",
+      "categoria": "emociones"
+    },
+    {
+      "de": "Scham",
+      "en": "Shame",
+      "es": "Vergüenza",
+      "fr": "Honte",
+      "it": "Vergogna",
+      "pt": "Vergonha",
+      "categoria": "emociones"
+    },
+    {
+      "de": "Ruhe",
+      "en": "Calm",
+      "es": "Tranquilidad",
+      "fr": "Calme",
+      "it": "Tranquillità",
+      "pt": "Tranquilidade",
+      "categoria": "emociones"
+    },
+    {
+      "de": "Letzte Woche",
+      "en": "Last week",
+      "es": "La semana pasada",
+      "fr": "La semaine dernière",
+      "it": "La settimana scorsa",
+      "pt": "A semana passada",
+      "categoria": "tiempo_fechas"
+    },
+    {
+      "de": "Nächsten Monat",
+      "en": "Next month",
+      "es": "El mes que viene",
+      "fr": "Le mois prochain",
+      "it": "Il prossimo mese",
+      "pt": "O próximo mês",
+      "categoria": "tiempo_fechas"
+    },
+    {
+      "de": "Immer",
+      "en": "Always",
+      "es": "Siempre",
+      "fr": "Toujours",
+      "it": "Sempre",
+      "pt": "Sempre",
+      "categoria": "tiempo_fechas"
+    },
+    {
+      "de": "Nie",
+      "en": "Never",
+      "es": "Nunca",
+      "fr": "Jamais",
+      "it": "Mai",
+      "pt": "Nunca",
+      "categoria": "tiempo_fechas"
+    },
+    {
+      "de": "Manchmal",
+      "en": "Sometimes",
+      "es": "A veces",
+      "fr": "Parfois",
+      "it": "A volte",
+      "pt": "Às vezes",
+      "categoria": "tiempo_fechas"
+    },
+    {
+      "de": "Früh",
+      "en": "Early",
+      "es": "Temprano",
+      "fr": "Tôt",
+      "it": "Presto",
+      "pt": "Cedo",
+      "categoria": "tiempo_fechas"
+    },
+    {
+      "de": "Spät",
+      "en": "Late",
+      "es": "Tarde",
+      "fr": "Tard",
+      "it": "Tardi",
+      "pt": "Tarde",
+      "categoria": "tiempo_fechas"
+    },
+    {
+      "de": "Bald",
+      "en": "Soon",
+      "es": "Pronto",
+      "fr": "Bientôt",
+      "it": "Presto",
+      "pt": "Em breve",
+      "categoria": "tiempo_fechas"
+    },
+    {
+      "de": "Schon",
+      "en": "Already",
+      "es": "Ya",
+      "fr": "Déjà",
+      "it": "Già",
+      "pt": "Já",
+      "categoria": "tiempo_fechas"
+    },
+    {
+      "de": "Noch",
+      "en": "Still",
+      "es": "Todavía",
+      "fr": "Encore",
+      "it": "Ancora",
+      "pt": "Ainda",
+      "categoria": "tiempo_fechas"
+    },
+    {
+      "de": "Können Sie mir helfen?",
+      "en": "Can you help me?",
+      "es": "¿Puede ayudarme?",
+      "fr": "Pouvez-vous m'aider ?",
+      "it": "Può aiutarmi?",
+      "pt": "Pode ajudar-me?",
+      "categoria": "frases_utiles"
+    },
+    {
+      "de": "Wo kann ich das kaufen?",
+      "en": "Where can I buy this?",
+      "es": "¿Dónde puedo comprar esto?",
+      "fr": "Où puis-je acheter ça ?",
+      "it": "Dove posso comprare questo?",
+      "pt": "Onde posso comprar isto?",
+      "categoria": "frases_utiles"
+    },
+    {
+      "de": "Es tut mir leid",
+      "en": "I'm sorry",
+      "es": "Lo siento",
+      "fr": "Je suis désolé",
+      "it": "Mi dispiace",
+      "pt": "Desculpe",
+      "categoria": "frases_utiles"
+    },
+    {
+      "de": "Entschuldigung",
+      "en": "Excuse me",
+      "es": "Con permiso",
+      "fr": "Excusez-moi",
+      "it": "Permesso",
+      "pt": "Com licença",
+      "categoria": "frases_utiles"
+    },
+    {
+      "de": "Wie spät ist es?",
+      "en": "What time is it?",
+      "es": "¿Qué hora es?",
+      "fr": "Quelle heure est-il ?",
+      "it": "Che ore sono?",
+      "pt": "Que horas são?",
+      "categoria": "frases_utiles"
+    },
+    {
+      "de": "Schön, dich kennenzulernen",
+      "en": "Pleased to meet you",
+      "es": "Encantado de conocerte",
+      "fr": "Ravi de te rencontrer",
+      "it": "Piacere di conoscerti",
+      "pt": "Prazer em conhecer-te",
+      "categoria": "frases_utiles"
+    },
+    {
+      "de": "Was ist dein Beruf?",
+      "en": "What is your profession?",
+      "es": "¿Cuál es tu profesión?",
+      "fr": "Quelle est ta profession ?",
+      "it": "Qual è la tua professione?",
+      "pt": "Qual é a tua profissão?",
+      "categoria": "frases_utiles"
+    },
+    {
+      "de": "Ich stimme zu",
+      "en": "I agree",
+      "es": "Estoy de acuerdo",
+      "fr": "Je suis d'accord",
+      "it": "Sono d'accordo",
+      "pt": "Concordo",
+      "categoria": "frases_utiles"
+    },
+    {
+      "de": "Ich stimme nicht zu",
+      "en": "I disagree",
+      "es": "No estoy de acuerdo",
+      "fr": "Je ne suis pas d'accord",
+      "it": "Non sono d'accordo",
+      "pt": "Não concordo",
+      "categoria": "frases_utiles"
+    },
+    {
+      "de": "Was empfehlen Sie?",
+      "en": "What do you recommend?",
+      "es": "¿Qué recomienda?",
+      "fr": "Que recommandez-vous ?",
+      "it": "Cosa consiglia?",
+      "pt": "O que recomenda?",
+      "categoria": "frases_utiles"
+    },
+    {
+      "de": "Reisen",
+      "en": "To travel",
+      "es": "Viajar",
+      "fr": "Voyager",
+      "it": "Viaggiare",
+      "pt": "Viajar",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Bezahlen",
+      "en": "To pay",
+      "es": "Pagar",
+      "fr": "Payer",
+      "it": "Pagare",
+      "pt": "Pagar",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Reservieren",
+      "en": "To book",
+      "es": "Reservar",
+      "fr": "Réserver",
+      "it": "Prenotare",
+      "pt": "Reservar",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Warten",
+      "en": "To wait",
+      "es": "Esperar",
+      "fr": "Attendre",
+      "it": "Aspettare",
+      "pt": "Esperar",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Finden",
+      "en": "To find",
+      "es": "Encontrar",
+      "fr": "Trouver",
+      "it": "Trovare",
+      "pt": "Encontrar",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Verlieren",
+      "en": "To lose",
+      "es": "Perder",
+      "fr": "Perdre",
+      "it": "Perdere",
+      "pt": "Perder",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Gewinnen",
+      "en": "To win",
+      "es": "Ganar",
+      "fr": "Gagner",
+      "it": "Vincere",
+      "pt": "Ganhar",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Anfangen",
+      "en": "To start",
+      "es": "Empezar",
+      "fr": "Commencer",
+      "it": "Iniziare",
+      "pt": "Começar",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Beenden",
+      "en": "To finish",
+      "es": "Terminar",
+      "fr": "Terminer",
+      "it": "Finire",
+      "pt": "Terminar",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Entscheiden",
+      "en": "To decide",
+      "es": "Decidir",
+      "fr": "Décider",
+      "it": "Decidere",
+      "pt": "Decidir",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Denken",
+      "en": "To think",
+      "es": "Pensar",
+      "fr": "Penser",
+      "it": "Pensare",
+      "pt": "Pensar",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Sich erinnern",
+      "en": "To remember",
+      "es": "Recordar",
+      "fr": "Se souvenir",
+      "it": "Ricordare",
+      "pt": "Lembrar",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Vergessen",
+      "en": "To forget",
+      "es": "Olvidar",
+      "fr": "Oublier",
+      "it": "Dimenticare",
+      "pt": "Esquecer",
+      "categoria": "verbos"
+    },
+    {
+      "de": "Fahrkarte",
+      "en": "Ticket",
+      "es": "Billete",
+      "fr": "Billet",
+      "it": "Biglietto",
+      "pt": "Bilhete",
+      "categoria": "transporte"
+    },
+    {
+      "de": "Bahnhof",
+      "en": "Train station",
+      "es": "Estación de tren",
+      "fr": "Gare",
+      "it": "Stazione ferroviaria",
+      "pt": "Estação de comboio",
+      "categoria": "transporte"
+    },
+    {
+      "de": "Koffer",
+      "en": "Suitcase",
+      "es": "Maleta",
+      "fr": "Valise",
+      "it": "Valigia",
+      "pt": "Mala",
+      "categoria": "transporte"
+    },
+    {
+      "de": "Reisepass",
+      "en": "Passport",
+      "es": "Pasaporte",
+      "fr": "Passeport",
+      "it": "Passaporto",
+      "pt": "Passaporte",
+      "categoria": "transporte"
+    },
+    {
+      "de": "Flug",
+      "en": "Flight",
+      "es": "Vuelo",
+      "fr": "Vol",
+      "it": "Volo",
+      "pt": "Voo",
+      "categoria": "transporte"
+    },
+    {
+      "de": "Fahrer",
+      "en": "Driver",
+      "es": "Conductor",
+      "fr": "Conducteur",
+      "it": "Autista",
+      "pt": "Condutor",
+      "categoria": "transporte"
+    },
+    {
+      "de": "Bushaltestelle",
+      "en": "Bus stop",
+      "es": "Parada de autobús",
+      "fr": "Arrêt de bus",
+      "it": "Fermata dell'autobus",
+      "pt": "Paragem de autocarro",
+      "categoria": "transporte"
+    },
+    {
+      "de": "Autobahn",
+      "en": "Highway",
+      "es": "Autopista",
+      "fr": "Autoroute",
+      "it": "Autostrada",
+      "pt": "Autoestrada",
+      "categoria": "transporte"
+    },
+    {
+      "de": "Parkplatz",
+      "en": "Parking",
+      "es": "Aparcamiento",
+      "fr": "Parking",
+      "it": "Parcheggio",
+      "pt": "Estacionamento",
+      "categoria": "transporte"
+    },
+    {
+      "de": "Ampel",
+      "en": "Traffic light",
+      "es": "Semáforo",
+      "fr": "Feu de circulation",
+      "it": "Semaforo",
+      "pt": "Semáforo",
+      "categoria": "transporte"
+    }
   ]
 }

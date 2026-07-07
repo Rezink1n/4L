@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mis palabras · 4L</title>
+  <title>4L</title>
   <link rel="manifest" href="manifest.webmanifest" />
   <meta name="theme-color" content="#4f46e5" />
   <link rel="stylesheet" href="css/variables.css" />
@@ -15,15 +15,15 @@
 
   <main class="contenedor">
     <div class="cabecera-pagina">
-      <h1>Mis palabras</h1>
-      <p>Añade tu propio vocabulario. Solo tú puedes verlo y editarlo.</p>
+      <h1 data-i18n="mispalabras_titulo">Mis palabras</h1>
+      <p data-i18n="mispalabras_subtitulo">Añade tu propio vocabulario. Solo tú puedes verlo y editarlo.</p>
     </div>
 
     <form id="formulario-termino" class="tarjeta" style="margin-bottom: var(--espacio-lg);">
       <input type="hidden" id="campo-editando-id" value="" />
 
       <div class="campo">
-        <label for="campo-nivel">Nivel</label>
+        <label for="campo-nivel" data-i18n="mispalabras_label_nivel">Nivel</label>
         <select id="campo-nivel">
           <option value="A1">A1</option>
           <option value="A2">A2</option>
@@ -31,37 +31,22 @@
       </div>
 
       <div class="campo">
-        <label for="campo-categoria">Categoría (opcional)</label>
-        <input type="text" id="campo-categoria" placeholder="p. ej. trabajo, viajes…" />
+        <label for="campo-categoria" data-i18n="mispalabras_label_categoria">Categoría (opcional)</label>
+        <input type="text" id="campo-categoria" data-i18n-placeholder="mispalabras_placeholder_categoria" placeholder="p. ej. trabajo, viajes…" />
       </div>
 
-      <div class="campo">
-        <label for="campo-texto-es">Español</label>
-        <input type="text" id="campo-texto-es" required />
-      </div>
-      <div class="campo">
-        <label for="campo-texto-fr">Francés</label>
-        <input type="text" id="campo-texto-fr" placeholder="opcional" />
-      </div>
-      <div class="campo">
-        <label for="campo-texto-pt">Portugués</label>
-        <input type="text" id="campo-texto-pt" placeholder="opcional" />
-      </div>
-      <div class="campo">
-        <label for="campo-texto-it">Italiano</label>
-        <input type="text" id="campo-texto-it" placeholder="opcional" />
-      </div>
+      <div id="campos-idiomas"><!-- generado dinámicamente por js/paginas/misPalabras.js, uno por idioma --></div>
 
       <div class="flex gap-sm">
-        <button type="submit" class="boton boton--primario" id="boton-guardar-termino">Añadir palabra</button>
-        <button type="button" class="boton boton--secundario oculto" id="boton-cancelar-edicion">Cancelar</button>
+        <button type="submit" class="boton boton--primario" id="boton-guardar-termino" data-i18n="mispalabras_boton_anadir">Añadir palabra</button>
+        <button type="button" class="boton boton--secundario oculto" id="boton-cancelar-edicion" data-i18n="mispalabras_boton_cancelar">Cancelar</button>
       </div>
     </form>
 
     <div id="zona-mis-terminos">
       <div class="estado">
         <span class="estado__icono girando">⏳</span>
-        <p>Cargando tus palabras…</p>
+        <p data-i18n="mispalabras_cargando">Cargando tus palabras…</p>
       </div>
     </div>
   </main>
