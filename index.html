@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Explorar · 4L</title>
+  <title>4L</title>
   <link rel="manifest" href="manifest.webmanifest" />
   <meta name="theme-color" content="#4f46e5" />
   <link rel="stylesheet" href="css/variables.css" />
@@ -15,33 +15,38 @@
 
   <main class="contenedor">
     <div class="cabecera-pagina">
-      <h1>Explorar vocabulario</h1>
-      <p>Busca términos y escucha su pronunciación en cada idioma.</p>
+      <h1 data-i18n="explorar_titulo">Explorar vocabulario</h1>
+      <p data-i18n="explorar_subtitulo">Busca términos y escucha su pronunciación en cada idioma.</p>
     </div>
 
     <input
       type="search"
       class="campo-busqueda"
       id="campo-busqueda"
+      data-i18n-placeholder="explorar_placeholder_busqueda"
       placeholder="Buscar una palabra o frase…"
     />
 
     <div class="barra-filtros" id="filtros-nivel">
-      <button class="chip-filtro activo" data-nivel="">Todos los niveles</button>
+      <button class="chip-filtro activo" data-nivel="" data-i18n="explorar_filtro_todos_niveles">Todos los niveles</button>
       <button class="chip-filtro" data-nivel="A1">A1</button>
       <button class="chip-filtro" data-nivel="A2">A2</button>
     </div>
 
     <div class="barra-filtros" id="filtros-origen">
-      <button class="chip-filtro activo" data-origen="todos">Todo el contenido</button>
-      <button class="chip-filtro" data-origen="oficial">Solo oficial</button>
-      <button class="chip-filtro" data-origen="propio">Solo mis palabras</button>
+      <button class="chip-filtro activo" data-origen="todos" data-i18n="explorar_filtro_todo_contenido">Todo el contenido</button>
+      <button class="chip-filtro" data-origen="oficial" data-i18n="explorar_filtro_solo_oficial">Solo oficial</button>
+      <button class="chip-filtro" data-origen="propio" data-i18n="explorar_filtro_solo_propio">Solo mis palabras</button>
+    </div>
+
+    <div class="barra-filtros" id="filtros-categoria">
+      <button class="chip-filtro activo" data-categoria="" data-i18n="explorar_filtro_todas_categorias">Todas las categorías</button>
     </div>
 
     <div id="zona-resultados">
       <div class="estado">
         <span class="estado__icono girando">⏳</span>
-        <p>Cargando vocabulario…</p>
+        <p data-i18n="explorar_cargando">Cargando vocabulario…</p>
       </div>
     </div>
   </main>

@@ -3,8 +3,10 @@
 import { supabase } from '../supabaseClient.js';
 import { registrarse, iniciarSesion, enviarEnlaceMagico, traducirErrorAuth } from '../auth.js';
 import { aplicarTemaGuardado } from '../utils.js';
+import { t, aplicarTraducciones } from '../i18n.js';
 
 aplicarTemaGuardado();
+aplicarTraducciones(document);
 
 // Si ya hay sesión activa, no tiene sentido quedarse en el login.
 const {
@@ -33,10 +35,8 @@ function limpiarMensaje() {
 enlaceCambiarModo.addEventListener('click', (evento) => {
   evento.preventDefault();
   modoRegistro = !modoRegistro;
-  botonEnviar.textContent = modoRegistro ? 'Crear cuenta' : 'Iniciar sesión';
-  enlaceCambiarModo.textContent = modoRegistro
-    ? '¿Ya tienes cuenta? Inicia sesión'
-    : '¿No tienes cuenta? Regístrate';
+  botonEnviar.textContent = modoRegistro ? t('login_boton_crear') : t('login_boton_iniciar');
+  enlaceCambiarModo.textContent = modoRegistro ? t('login_enlace_a_login') : t('login_enlace_a_registro');
   limpiarMensaje();
 });
 
@@ -47,11 +47,11 @@ formulario.addEventListener('submit', async (evento) => {
   const password = document.getElementById('campo-password').value;
 
   botonEnviar.disabled = true;
-  botonEnviar.textContent = 'Un momento…';
+  botonEnviar.textContent = t('login_momento');
   try {
     if (modoRegistro) {
       await registrarse(email, password);
-      mostrarMensaje('Cuenta creada. Revisa tu correo si Supabase pide confirmación.', 'exito');
+      mostrarMensaje(t('login_mensaje_cuenta_creada'), 'exito');
     } else {
       await iniciarSesion(email, password);
       window.location.href = 'index.html';
@@ -60,7 +60,7 @@ formulario.addEventListener('submit', async (evento) => {
     mostrarMensaje(traducirErrorAuth(error));
   } finally {
     botonEnviar.disabled = false;
-    botonEnviar.textContent = modoRegistro ? 'Crear cuenta' : 'Iniciar sesión';
+    botonEnviar.textContent = modoRegistro ? t('login_boton_crear') : t('login_boton_iniciar');
   }
 });
 
@@ -68,13 +68,13 @@ botonMagico.addEventListener('click', async () => {
   limpiarMensaje();
   const email = document.getElementById('campo-email').value.trim();
   if (!email) {
-    mostrarMensaje('Escribe primero tu correo electrónico.');
+    mostrarMensaje(t('login_error_sin_email'));
     return;
   }
   botonMagico.disabled = true;
   try {
     await enviarEnlaceMagico(email);
-    mostrarMensaje('Te hemos enviado un enlace a tu correo. Ábrelo desde este dispositivo.', 'exito');
+    mostrarMensaje(t('login_mensaje_enlace_enviado'), 'exito');
   } catch (error) {
     mostrarMensaje(traducirErrorAuth(error));
   } finally {

@@ -2,6 +2,7 @@
 // link) y cierre de sesión. Toda la lógica de Supabase Auth vive aquí para
 // que las páginas solo tengan que llamar a estas funciones.
 import { supabase } from './supabaseClient.js';
+import { t } from './i18n.js';
 
 export async function registrarse(email, password) {
   const { data, error } = await supabase.auth.signUp({ email, password });
@@ -37,20 +38,20 @@ export async function obtenerUsuarioActual() {
   return user;
 }
 
-/** Traduce los mensajes de error más comunes de Supabase Auth al español. */
+/** Traduce los mensajes de error más comunes de Supabase Auth al idioma de la interfaz. */
 export function traducirErrorAuth(error) {
   const mensaje = error?.message || '';
   if (mensaje.includes('Invalid login credentials')) {
-    return 'Correo o contraseña incorrectos.';
+    return t('error_credenciales');
   }
   if (mensaje.includes('User already registered')) {
-    return 'Ya existe una cuenta con ese correo. Prueba a iniciar sesión.';
+    return t('error_ya_registrado');
   }
   if (mensaje.includes('Password should be at least')) {
-    return 'La contraseña debe tener al menos 6 caracteres.';
+    return t('error_password_corta');
   }
   if (mensaje.includes('Unable to validate email address')) {
-    return 'El formato del correo no es válido.';
+    return t('error_email_invalido');
   }
-  return 'Ha ocurrido un error. Inténtalo de nuevo.';
+  return t('error_generico');
 }

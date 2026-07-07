@@ -12,11 +12,8 @@
   --color-primario-suave: #eef2ff;
   --color-primario-texto: #ffffff;
 
-  /* Un acento por idioma, para que las tarjetas sean fáciles de escanear */
-  --color-es: #f59e0b;
-  --color-fr: #2563eb;
-  --color-pt: #16a34a;
-  --color-it: #dc2626;
+  /* Los acentos de color por idioma viven en js/componentes/tarjetaTermino.js
+     (COLOR_IDIOMA), no aquí, para poder añadir idiomas sin tocar CSS. */
 
   --color-exito: #16a34a;
   --color-exito-suave: #dcfce7;

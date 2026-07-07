@@ -14,10 +14,10 @@ create extension if not exists "pgcrypto"; -- para gen_random_uuid()
 -- languages: catálogo de idiomas soportados
 -- ---------------------------------------------------------------------------
 create table if not exists public.languages (
-  code         text primary key,        -- 'es', 'fr', 'pt', 'it'...
-  name         text not null,           -- 'Francés'
-  native_name  text,                    -- 'Français'
-  is_learnable boolean not null default true, -- false para el idioma base (español)
+  code         text primary key,        -- 'es', 'fr', 'pt', 'it', 'en', 'de'...
+  name         text not null,           -- 'Francés' (nombre en español, uso interno)
+  native_name  text,                    -- 'Français' (nombre nativo, se usa en toda la interfaz
+                                         -- para no depender de traducir el nombre de cada idioma)
   sort_order   integer not null default 0
 );
 
@@ -86,6 +86,23 @@ create unique index if not exists uq_progreso_por_idioma
 create index if not exists idx_progreso_usuario on public.user_progress (user_id);
 
 -- ---------------------------------------------------------------------------
+-- user_settings: preferencias de idioma por usuario
+--  - primary_language: idioma principal, usado tanto para la interfaz como
+--    para decidir qué traducción se muestra como "término principal" en las
+--    tarjetas. Por defecto se detecta del navegador (navigator.language) la
+--    primera vez, pero el usuario lo puede cambiar en Ajustes.
+--  - active_languages: qué idiomas quiere aprender a la vez (subconjunto del
+--    resto de idiomas). Empieza vacío: la app pide al usuario que elija al
+--    menos uno la primera vez (pantalla de onboarding, ver onboarding.html).
+-- ---------------------------------------------------------------------------
+create table if not exists public.user_settings (
+  user_id          uuid primary key references auth.users (id) on delete cascade,
+  primary_language text not null references public.languages (code) default 'es',
+  active_languages text[] not null default '{}',
+  updated_at       timestamptz not null default now()
+);
+
+-- ---------------------------------------------------------------------------
 -- reminder_settings: preferencia de recordatorio local (Fase 1)
 -- ---------------------------------------------------------------------------
 create table if not exists public.reminder_settings (
@@ -115,6 +132,7 @@ alter table public.languages enable row level security;
 alter table public.terms enable row level security;
 alter table public.translations enable row level security;
 alter table public.user_progress enable row level security;
+alter table public.user_settings enable row level security;
 alter table public.reminder_settings enable row level security;
 alter table public.push_subscriptions enable row level security;
 
@@ -196,6 +214,12 @@ create policy "progreso: todo sobre lo propio"
   using (user_id = auth.uid())
   with check (user_id = auth.uid());
 
+create policy "ajustes_usuario: todo sobre lo propio"
+  on public.user_settings for all
+  to authenticated
+  using (user_id = auth.uid())
+  with check (user_id = auth.uid());
+
 create policy "recordatorios: todo sobre lo propio"
   on public.reminder_settings for all
   to authenticated
@@ -248,13 +272,15 @@ $$;
 grant execute on function public.marcar_progreso(uuid, text, boolean) to authenticated;
 
 -- ============================================================================
--- Idiomas iniciales. "es" es el idioma base (is_learnable = false): se
--- muestra siempre, pero no cuenta en las estadísticas de progreso.
+-- Idiomas iniciales. Cuál es el "idioma principal" ya no es un atributo fijo
+-- del idioma (antes "is_learnable"): lo elige cada usuario en user_settings.
 -- Añadir un idioma nuevo en el futuro es tan simple como una fila más aquí.
 -- ============================================================================
-insert into public.languages (code, name, native_name, is_learnable, sort_order) values
-  ('es', 'Español',   'Español',  false, 0),
-  ('fr', 'Francés',   'Français', true,  1),
-  ('pt', 'Portugués', 'Português', true, 2),
-  ('it', 'Italiano',  'Italiano', true,  3)
+insert into public.languages (code, name, native_name, sort_order) values
+  ('es', 'Español',   'Español',   0),
+  ('fr', 'Francés',   'Français',  1),
+  ('pt', 'Portugués', 'Português', 2),
+  ('it', 'Italiano',  'Italiano',  3),
+  ('en', 'Inglés',    'English',   4),
+  ('de', 'Alemán',    'Deutsch',   5)
 on conflict (code) do nothing;

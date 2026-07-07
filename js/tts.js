@@ -7,6 +7,8 @@ const CODIGO_VOZ = {
   fr: 'fr-FR',
   pt: 'pt-PT',
   it: 'it-IT',
+  en: 'en-GB',
+  de: 'de-DE',
 };
 
 let vocesDisponibles = [];

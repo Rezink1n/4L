@@ -1,6 +1,7 @@
 // Panel de progreso: una tarjeta por nivel (A1, A2, ...) con una barra por
 // idioma mostrando el porcentaje de términos aprendidos.
 import { escaparHtml } from '../utils.js';
+import { t } from '../i18n.js';
 
 /**
  * @param {object} estadisticas - salida de api/progreso.js -> calcularEstadisticas()
@@ -14,7 +15,7 @@ export function crearPanelProgreso(estadisticas, idiomasAprendibles) {
     contenedor.innerHTML = `
       <div class="estado">
         <span class="estado__icono">📭</span>
-        <p>Todavía no hay vocabulario para calcular tu progreso.</p>
+        <p>${t('progreso_sin_datos')}</p>
       </div>`;
     return contenedor;
   }
@@ -30,7 +31,7 @@ export function crearPanelProgreso(estadisticas, idiomasAprendibles) {
           return `
           <div class="barra-progreso-fila">
             <div class="barra-progreso-fila__etiqueta">
-              <span>${escaparHtml(idioma.name)}</span>
+              <span>${escaparHtml(idioma.native_name)}</span>
               <span>${aprendidos}/${total} · ${porcentaje}%</span>
             </div>
             <div class="barra-progreso-pista">
@@ -42,7 +43,7 @@ export function crearPanelProgreso(estadisticas, idiomasAprendibles) {
 
       return `
         <div class="tarjeta-progreso">
-          <div class="tarjeta-progreso__titulo">Nivel ${escaparHtml(nivel)}</div>
+          <div class="tarjeta-progreso__titulo">${t('progreso_nivel')} ${escaparHtml(nivel)}</div>
           ${filas}
         </div>`;
     })
