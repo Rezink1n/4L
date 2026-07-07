@@ -228,6 +228,7 @@ create or replace function public.marcar_progreso(
 ) returns void
 language plpgsql
 security invoker
+set search_path = public, pg_temp
 as $$
 begin
   if p_language_code is null then
