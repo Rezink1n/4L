@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>4L</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#4f46e5" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/componentes.css" />
+  <style>
+    .tabla-admin-wrap { overflow-x: auto; }
+    table.tabla-admin { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    table.tabla-admin th, table.tabla-admin td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--color-borde); white-space: nowrap; }
+    table.tabla-admin img { width: 28px; height: 28px; border-radius: 999px; object-fit: cover; }
+    table.tabla-admin select { font-size: 0.8rem; padding: 4px 6px; border-radius: 6px; border: 1px solid var(--color-borde); background: var(--color-superficie); color: var(--color-texto); }
+  </style>
+</head>
+<body>
+  <nav id="nav-app" class="nav-app"></nav>
+
+  <main class="contenedor" style="max-width: 1000px;">
+    <div class="cabecera-pagina">
+      <h1 data-i18n="admin_titulo">Panel de administración</h1>
+      <p data-i18n="admin_subtitulo">Usuarios registrados, roles y suscripciones.</p>
+    </div>
+
+    <div id="zona-admin">
+      <div class="estado">
+        <span class="estado__icono girando">⏳</span>
+        <p data-i18n="aprender_cargando">Cargando…</p>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="js/paginas/admin.js"></script>
+</body>
+</html>

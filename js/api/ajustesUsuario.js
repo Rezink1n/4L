@@ -25,3 +25,16 @@ export async function guardarAjustesUsuario({ idiomaPrincipal, idiomasActivos })
   );
   if (error) throw error;
 }
+
+/** Actualiza solo las variantes de pronunciación elegidas (es-ES/es-419, etc.). */
+export async function guardarVariantesVoz(voiceVariants) {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const { error } = await supabase
+    .from('user_settings')
+    .update({ voice_variants: voiceVariants, updated_at: new Date().toISOString() })
+    .eq('user_id', user.id);
+  if (error) throw error;
+}

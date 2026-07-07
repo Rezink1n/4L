@@ -4,8 +4,8 @@ import { exigirSesionYAjustes, aplicarTemaGuardado, guardarTema, mostrarTostada,
 import { iniciarNavegacion } from '../componentes/navegacion.js';
 import { obtenerRecordatorio, guardarRecordatorio } from '../api/recordatorios.js';
 import { pedirPermisoNotificaciones, permisoConcedido, guardarCacheLocal } from '../notificaciones.js';
-import { obtenerIdiomas } from '../api/idiomas.js';
-import { guardarAjustesUsuario } from '../api/ajustesUsuario.js';
+import { obtenerIdiomas, obtenerVariantes, agruparVariantesPorIdioma } from '../api/idiomas.js';
+import { guardarAjustesUsuario, guardarVariantesVoz } from '../api/ajustesUsuario.js';
 import { t, establecerIdiomaInterfaz } from '../i18n.js';
 
 aplicarTemaGuardado();
@@ -66,6 +66,60 @@ if (ajustesActuales) {
       mostrarTostada(t('ajustes_toast_error_guardar'));
     } finally {
       botonGuardarIdiomas.disabled = false;
+    }
+  });
+
+  // --- Variantes de pronunciación (solo idiomas con más de una variante) ---
+  const listaVariantes = document.getElementById('lista-variantes');
+  const botonGuardarVariantes = document.getElementById('boton-guardar-variantes');
+  const voiceVariantsActuales = ajustesActuales.voice_variants || {};
+
+  async function pintarVariantes() {
+    const [idiomas, variantes] = await Promise.all([obtenerIdiomas(), obtenerVariantes()]);
+    const nombreIdioma = new Map(idiomas.map((i) => [i.code, i.native_name]));
+    const variantesPorIdioma = agruparVariantesPorIdioma(variantes);
+    const idiomasConVariantes = Object.entries(variantesPorIdioma).filter(([, lista]) => lista.length > 1);
+
+    if (idiomasConVariantes.length === 0) {
+      listaVariantes.innerHTML = '';
+      botonGuardarVariantes.classList.add('oculto');
+      return;
+    }
+
+    listaVariantes.innerHTML = idiomasConVariantes
+      .map(([idiomaCodigo, variantesIdioma]) => {
+        const seleccionada =
+          voiceVariantsActuales[idiomaCodigo] || variantesIdioma.find((v) => v.is_default)?.variant_code;
+        return `
+        <div class="campo">
+          <label for="campo-variante-${idiomaCodigo}">${escaparHtml(nombreIdioma.get(idiomaCodigo) || idiomaCodigo)}</label>
+          <select id="campo-variante-${idiomaCodigo}" data-idioma="${idiomaCodigo}">
+            ${variantesIdioma
+              .map(
+                (v) =>
+                  `<option value="${v.variant_code}" ${v.variant_code === seleccionada ? 'selected' : ''}>${v.flag_emoji} ${escaparHtml(v.label)}</option>`
+              )
+              .join('')}
+          </select>
+        </div>`;
+      })
+      .join('');
+  }
+
+  botonGuardarVariantes.addEventListener('click', async () => {
+    const voiceVariants = {};
+    listaVariantes.querySelectorAll('select[data-idioma]').forEach((select) => {
+      voiceVariants[select.dataset.idioma] = select.value;
+    });
+    botonGuardarVariantes.disabled = true;
+    try {
+      await guardarVariantesVoz(voiceVariants);
+      mostrarTostada(t('ajustes_toast_variantes_guardadas'));
+    } catch (error) {
+      console.error(error);
+      mostrarTostada(t('ajustes_toast_error_guardar'));
+    } finally {
+      botonGuardarVariantes.disabled = false;
     }
   });
 
@@ -137,5 +191,6 @@ if (ajustesActuales) {
   });
 
   pintarIdiomas();
+  pintarVariantes();
   cargarRecordatorio();
 }

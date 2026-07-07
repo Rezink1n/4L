@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>4L</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#4f46e5" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/componentes.css" />
+</head>
+<body>
+  <nav id="nav-app" class="nav-app"></nav>
+
+  <main class="contenedor">
+    <div class="cabecera-pagina">
+      <h1 data-i18n="aprender_titulo">Aprender</h1>
+      <p data-i18n="aprender_subtitulo">Alfabeto, pronunciación y gramática básica de cada idioma.</p>
+    </div>
+
+    <div class="campo">
+      <label for="campo-idioma-guia" data-i18n="aprender_label_idioma">Idioma</label>
+      <select id="campo-idioma-guia"></select>
+    </div>
+
+    <div class="barra-filtros" id="tabs-tipo-guia">
+      <button class="chip-filtro activo" data-tipo="alfabeto" data-i18n="aprender_tab_alfabeto">Alfabeto y pronunciación</button>
+      <button class="chip-filtro" data-tipo="gramatica" data-i18n="aprender_tab_gramatica">Gramática básica</button>
+    </div>
+
+    <p class="campo__ayuda" data-i18n="aprender_nota_idioma">Las explicaciones de esta sección están de momento solo en español.</p>
+
+    <div id="zona-guia">
+      <div class="estado">
+        <span class="estado__icono girando">⏳</span>
+        <p data-i18n="aprender_cargando">Cargando…</p>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="js/paginas/aprender.js"></script>
+</body>
+</html>
